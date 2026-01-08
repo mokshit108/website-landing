@@ -6,11 +6,11 @@ import BlogSection from '../components/BlogSection';
 import ContactUs from '../components/ContactUs';
 import Footer from '../components/Footer';
 
-const HomePage = () => {
+const HomePage = ({ splashComplete = false }) => {
   return (
     <>
       <div id="home">
-        <MainSection />
+        <MainSection splashComplete={splashComplete} />
       </div>
       <div id="industries">
         <IndustrySection />

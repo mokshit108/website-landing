@@ -3,20 +3,22 @@ import { useNavigate, useLocation } from 'react-router-dom';
 // Option 2: If you want to import logo from src/assets folder, uncomment below:
 // import logo from '../assets/logo.png';
 
-const Navigation = () => {
+const Navigation = ({ splashComplete = false }) => {
   const [activeLink, setActiveLink] = useState('Home');
   const [isVisible, setIsVisible] = useState(false);
   const navigate = useNavigate();
   const location = useLocation();
 
   useEffect(() => {
-    // Small delay to ensure browser paints initial state before animation
-    const timer = setTimeout(() => {
-      setIsVisible(true);
-    }, 50);
-    
-    return () => clearTimeout(timer);
-  }, []);
+    // Only start animation after splash screen completes
+    if (splashComplete) {
+      const timer = setTimeout(() => {
+        setIsVisible(true);
+      }, 100); // Small delay after splash completes
+      
+      return () => clearTimeout(timer);
+    }
+  }, [splashComplete]);
 
   const navLinks = ['Home', 'Industries', 'Products', 'Blog', 'About Us', 'Contact Us'];
 
@@ -75,6 +77,11 @@ const Navigation = () => {
           <div 
             className="flex-shrink-0 flex items-center space-x-2 -ml-4 cursor-pointer"
             onClick={() => navigate('/')}
+            style={{
+              opacity: splashComplete ? 1 : 0,
+              transition: 'opacity 0.5s ease-in',
+              pointerEvents: splashComplete ? 'auto' : 'none'
+            }}
           >
             {/* Option 1: Logo from public/assets folder (use /assets/logo.png) */}
             {/* Option 2: Logo from src/assets folder (import and use: src={logo}) */}

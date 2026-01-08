@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 
-const MainSection = () => {
+const MainSection = ({ splashComplete = false }) => {
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
   const [showContent, setShowContent] = useState(false);
   
@@ -19,13 +19,16 @@ const MainSection = () => {
   }, [heroImages.length]);
 
   useEffect(() => {
-    // Wait for navigation animation to complete (800ms + 50ms delay) before showing content
-    const timer = setTimeout(() => {
-      setShowContent(true);
-    }, 1000);
+    // Wait for splash + navigation animation to complete before showing content
+    // Splash completes -> 100ms -> Navigation starts -> 800ms -> Navigation completes -> 200ms -> Content starts
+    if (splashComplete) {
+      const timer = setTimeout(() => {
+        setShowContent(true);
+      }, 1100); // Wait for navigation animation to complete (100ms delay + 800ms animation + 200ms buffer)
 
-    return () => clearTimeout(timer);
-  }, []);
+      return () => clearTimeout(timer);
+    }
+  }, [splashComplete]);
 
   return (
     <section className="py-16 px-4 sm:px-6 lg:px-8 bg-transparent relative overflow-x-hidden">

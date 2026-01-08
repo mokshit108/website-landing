@@ -38,10 +38,10 @@ function AppContent() {
       <div className="relative z-10">
         {/* Space above navigation to show background */}
         <div className="h-4 bg-transparent"></div>
-        <Navigation />
+        <Navigation splashComplete={splashComplete} />
         <main className="min-h-screen">
           <Routes>
-            <Route path="/" element={<HomePage />} />
+            <Route path="/" element={<HomePage splashComplete={splashComplete} />} />
             <Route path="/about-us" element={<AboutUsPage />} />
           </Routes>
         </main>
