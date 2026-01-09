@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { motion } from 'framer-motion';
 
 const BlogSection = () => {
   const [currentIndex, setCurrentIndex] = useState(0);
@@ -51,14 +52,18 @@ const BlogSection = () => {
   const displayedPosts = blogPosts.slice(startIndex, startIndex + cardsPerPage);
 
   return (
-    <section className="py-16 px-4 sm:px-6 lg:px-8 bg-white relative">
+    <section className="py-16 px-4 sm:px-6 lg:px-8 bg-white relative overflow-visible">
       {/* Design patch 1 - Top left */}
-      <div
+      <motion.div
         className="absolute pointer-events-none"
+        initial={{ x: -200, opacity: 0 }}
+        whileInView={{ x: 0, opacity: 1 }}
+        viewport={{ once: false, amount: 0.1 }}
+        transition={{ duration: 1.0, ease: [0.25, 0.1, 0.25, 1] }}
         style={{
           left: '0',
           top: '0',
-          zIndex: 1,
+          zIndex: 10,
           marginLeft: '80px'
         }}
       >
@@ -68,15 +73,19 @@ const BlogSection = () => {
           className="w-auto h-auto object-contain"
           style={{ width: '200px', height: '200px' }}
         />
-      </div>
+      </motion.div>
 
       {/* Design patch 2 - Top right behind third card */}
-      <div
+      <motion.div
         className="absolute pointer-events-none"
+        initial={{ x: 300, opacity: 0 }}
+        whileInView={{ x: 0, opacity: 1 }}
+        viewport={{ once: false, amount: 0.1 }}
+        transition={{ duration: 1.2, ease: [0.25, 0.1, 0.25, 1] }}
         style={{
           right: '0',
           top: '120px',
-          zIndex: 1,
+          zIndex: 10,
           marginBottom: '40px',
         }}
       >
@@ -86,10 +95,16 @@ const BlogSection = () => {
           className="w-auto h-auto object-contain"
           style={{ width: '280px', height: '280px' }}
         />
-      </div>
+      </motion.div>
       <div className="max-w-7xl mx-auto relative z-10">
         {/* Centered "Blogs" heading */}
-        <div className="text-center mb-6">
+        <motion.div 
+          className="text-center mb-6"
+          initial={{ y: -50, opacity: 0 }}
+          whileInView={{ y: 0, opacity: 1 }}
+          viewport={{ once: false, amount: 0.3 }}
+          transition={{ duration: 0.8, ease: [0.25, 0.1, 0.25, 1] }}
+        >
           <h2
             style={{
               fontFamily: 'Raleway, sans-serif',
@@ -104,10 +119,16 @@ const BlogSection = () => {
           >
             Blogs
           </h2>
-        </div>
+        </motion.div>
 
         {/* Subtitle with gradient text */}
-        <div className="text-center mb-12">
+        <motion.div 
+          className="text-center mb-12"
+          initial={{ y: -50, opacity: 0 }}
+          whileInView={{ y: 0, opacity: 1 }}
+          viewport={{ once: false, amount: 0.3 }}
+          transition={{ duration: 0.8, delay: 0.2, ease: [0.25, 0.1, 0.25, 1] }}
+        >
           <p
             style={{
               background: 'linear-gradient(90deg, #CD6028 11%, #3E6EB4 100%)',
@@ -124,17 +145,17 @@ const BlogSection = () => {
           >
             Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard.
           </p>
-        </div>
+        </motion.div>
 
         {/* Blog Cards Grid */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-16 mt-12">
-          {displayedPosts.map((post) => (
+          {displayedPosts.map((post, index) => (
             <div
               key={post.id}
               className="relative"
               style={{ overflow: 'visible', maxWidth: '360px', margin: '0 auto' }}
             >
-              {/* Mask Background Effect at Bottom of Each Card */}
+              {/* Mask Background Effect at Bottom of Each Card - Animates First */}
               <div
                 className="absolute pointer-events-none"
                 style={{
@@ -144,6 +165,16 @@ const BlogSection = () => {
                   zIndex: 0
                 }}
               >
+                <motion.div
+                  initial={{ y: 100, opacity: 0 }}
+                  whileInView={{ y: 0, opacity: 1 }}
+                  viewport={{ once: false, amount: 0.3 }}
+                  transition={{ 
+                    duration: 0.8, 
+                    delay: index * 0.15,
+                    ease: [0.25, 0.1, 0.25, 1]
+                  }}
+                >
                 <img
                   src="/assets/mask.png"
                   alt="Design mask"
@@ -154,8 +185,20 @@ const BlogSection = () => {
                     maxWidth: 'none'
                   }}
                 />
+                </motion.div>
               </div>
 
+              {/* Card Content - Appears After Mask */}
+              <motion.div
+                initial={{ opacity: 0, scale: 0.8 }}
+                whileInView={{ opacity: 1, scale: 1 }}
+                viewport={{ once: false, amount: 0.3 }}
+                transition={{ 
+                  duration: 0.6, 
+                  delay: 1.2 + (index * 0.2),
+                  ease: [0.25, 0.1, 0.25, 1]
+                }}
+              >
               <div
                 className="bg-white rounded-2xl shadow-lg hover:shadow-xl transition-shadow duration-300 border border-gray-100 relative z-10"
                 style={{
@@ -212,12 +255,19 @@ const BlogSection = () => {
                 </p>
               </div>
               </div>
+              </motion.div>
             </div>
           ))}
         </div>
 
         {/* Arrow Buttons Below Cards */}
-        <div className="flex justify-center gap-4 mt-16">
+        <motion.div 
+          className="flex justify-center gap-4 mt-16"
+          initial={{ y: 50, opacity: 0 }}
+          whileInView={{ y: 0, opacity: 1 }}
+          viewport={{ once: false, amount: 0.3 }}
+          transition={{ duration: 0.8, ease: [0.25, 0.1, 0.25, 1] }}
+        >
           {/* Left Arrow Button */}
           <button
             onClick={handlePrevious}
@@ -277,7 +327,7 @@ const BlogSection = () => {
               />
             </svg>
           </button>
-        </div>
+        </motion.div>
       </div>
     </section>
   );

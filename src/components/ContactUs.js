@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { motion } from 'framer-motion';
 
 const ContactUs = () => {
   const [formData, setFormData] = useState({
@@ -36,14 +37,26 @@ const ContactUs = () => {
           }
         `}
       </style>
-      <section className="py-16 px-4 sm:px-6 lg:px-8 bg-white relative" style={{ paddingTop: '80px', paddingBottom: '0', overflow: 'visible' }}>
+      <section className="py-16 px-4 sm:px-6 lg:px-8 bg-white relative overflow-visible" style={{ paddingTop: '80px', paddingBottom: '0' }}>
         {/* Design patch 2 - Top left (half visible from vertical side) */}
-        <div
+        <motion.div
           className="absolute pointer-events-none"
+          initial={{ y: -150, opacity: 0 }}
+          whileInView={{ 
+            y: [-150, 0, 0],
+            x: [0, 0, 40],
+            opacity: [0, 1, 1]
+          }}
+          viewport={{ once: false, amount: 0.05 }}
+          transition={{ 
+            duration: 2.0,
+            times: [0, 0.5, 1],
+            ease: [0.25, 0.1, 0.25, 1]
+          }}
           style={{
-            left: '-120px',
-            top: '-80px',
-            zIndex: 1
+            left: '-140px',
+            top: '0',
+            zIndex: 20
           }}
         >
           <img
@@ -52,11 +65,17 @@ const ContactUs = () => {
             className="w-auto h-auto object-contain"
             style={{ width: '280px', height: '280px' }}
           />
-        </div>
+        </motion.div>
         <div className="max-w-7xl mx-auto relative mt-12" style={{ zIndex: 2 }}>
         <div className="flex flex-col lg:flex-row gap-12">
           {/* Left Side - Contact Information */}
-          <div className="w-full lg:w-[45%]">
+          <motion.div 
+            className="w-full lg:w-[45%]"
+            initial={{ x: -150, opacity: 0 }}
+            whileInView={{ x: 0, opacity: 1 }}
+            viewport={{ once: false, amount: 0.3 }}
+            transition={{ duration: 1.0, ease: [0.25, 0.1, 0.25, 1] }}
+          >
             {/* Contact Us Title */}
             <h2
               style={{
@@ -171,10 +190,17 @@ const ContactUs = () => {
                 Unit 707, Lotus Trade Centre, Sahakar Nagar, New Link Road, Near D.N.Nagar, Andheri West, Mumbai, Maharashtra 400053.
               </p>
             </div>
-          </div>
+          </motion.div>
 
           {/* Right Side - Contact Form */}
-          <div className="w-full lg:w-[55%]" style={{ position: 'relative', zIndex: 10, marginTop: '30px', marginBottom: "-50px"  }}>
+          <motion.div 
+            className="w-full lg:w-[55%]" 
+            style={{ position: 'relative', zIndex: 10, marginTop: '30px', marginBottom: "-50px"  }}
+            initial={{ y: 150, opacity: 0 }}
+            whileInView={{ y: 0, opacity: 1 }}
+            viewport={{ once: false, amount: 0.3 }}
+            transition={{ duration: 1.0, ease: [0.25, 0.1, 0.25, 1] }}
+          >
             <div
               style={{
                 background: '#FFFFFF',
@@ -349,7 +375,7 @@ const ContactUs = () => {
               </div>
             </form>
             </div>
-          </div>
+          </motion.div>
         </div>
       </div>
       </section>
