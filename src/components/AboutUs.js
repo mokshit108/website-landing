@@ -1,4 +1,5 @@
 import React from 'react';
+import { motion } from 'framer-motion';
 
 const AboutUs = () => {
   return (
@@ -30,7 +31,11 @@ const AboutUs = () => {
 
       <div className="max-w-7xl mx-auto relative" style={{ zIndex: 1 }}>
         {/* Center Card with Title and Subtitle */}
-        <div
+        <motion.div
+          initial={{ opacity: 0, y: -100 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: false, amount: 0.3 }}
+          transition={{ duration: 0.8, ease: "easeOut" }}
           style={{
             background: 'rgba(255, 255, 255, 0.5)',
             borderRadius: '16px',
@@ -77,10 +82,14 @@ const AboutUs = () => {
           >
             Meet the Minds Shaping Document Automation.
           </p>
-        </div>
+        </motion.div>
 
          {/* Vision Card - Single Row Layout */}
-         <div
+         <motion.div
+           initial={{ opacity: 0, x: -200 }}
+           whileInView={{ opacity: 1, x: 0 }}
+           viewport={{ once: false, amount: 0.3 }}
+           transition={{ duration: 0.8, ease: "easeOut" }}
            style={{
              background: '#FFFFFF',
              borderRadius: '16px 100px 100px 16px',
@@ -154,10 +163,14 @@ const AboutUs = () => {
               flexShrink: 0
             }}
           />
-        </div>
+        </motion.div>
 
          {/* Mission Card - Single Row Layout (Right to Left) */}
-         <div
+         <motion.div
+           initial={{ opacity: 0, x: 200 }}
+           whileInView={{ opacity: 1, x: 0 }}
+           viewport={{ once: false, amount: 0.3 }}
+           transition={{ duration: 0.8, ease: "easeOut" }}
            style={{
              background: '#FFFFFF',
              borderRadius: '100px 16px 16px 100px',
@@ -231,7 +244,7 @@ const AboutUs = () => {
               flexShrink: 0
             }}
           />
-        </div>
+        </motion.div>
       </div>
     </section>
   );

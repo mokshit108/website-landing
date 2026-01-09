@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { motion } from 'framer-motion';
 
 const Team = () => {
   const [activeIndex, setActiveIndex] = useState(0);
@@ -45,7 +46,11 @@ const Team = () => {
       }}
     >
       {/* Left Side Background Image - 50% */}
-      <div
+      <motion.div
+        initial={{ opacity: 0, x: -200 }}
+        whileInView={{ opacity: 1, x: 0 }}
+        viewport={{ once: false, amount: 0.3 }}
+        transition={{ duration: 1.2, ease: "easeOut" }}
         style={{
           position: 'absolute',
           top: 0,
@@ -61,12 +66,17 @@ const Team = () => {
       />
 
       {/* Design patch - Middle right */}
-      <div
+      <motion.div
         className="absolute pointer-events-none"
+        initial={{ opacity: 0, x: 200 }}
+        whileInView={{ opacity: 1, x: 0 }}
+        viewport={{ once: false, amount: 0.3 }}
+        transition={{ duration: 1.0, ease: "easeOut" }}
         style={{
           right: '0',
-          top: '35%',
+          top: '25%',
           transform: 'translateY(-50%)',
+          marginRight: '180px',
           zIndex: 1
         }}
       >
@@ -76,11 +86,15 @@ const Team = () => {
           className="w-auto h-auto object-contain"
           style={{ width: '200px', height: '200px' }}
         />
-      </div>
+      </motion.div>
 
       <div className="max-w-7xl mx-auto relative" style={{ zIndex: 1 }}>
         {/* Title */}
-        <h2
+        <motion.h2
+          initial={{ opacity: 0, y: -80 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: false, amount: 0.3 }}
+          transition={{ duration: 0.8, ease: "easeOut" }}
           style={{
             fontFamily: 'Raleway, sans-serif',
             fontWeight: 600,
@@ -93,10 +107,14 @@ const Team = () => {
           }}
         >
           Meet our team
-        </h2>
+        </motion.h2>
 
         {/* Subtitle with Gradient */}
-        <p
+        <motion.p
+          initial={{ opacity: 0, y: -60 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: false, amount: 0.3 }}
+          transition={{ duration: 0.8, delay: 0.2, ease: "easeOut" }}
           style={{
             background: 'linear-gradient(90deg, #CD6028 11%, #3E6EB4 100%)',
             WebkitBackgroundClip: 'text',
@@ -114,10 +132,16 @@ const Team = () => {
           }}
         >
           Meet our passionate and talented team, committed to delivering exceptional results, driving innovation, and transforming your vision into reality.
-        </p>
+        </motion.p>
 
         {/* Carousel/Accordion Section */}
-        <div style={{ marginTop: '60px' }}>
+        <motion.div 
+          initial={{ opacity: 0, y: 120 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: false, amount: 0.3 }}
+          transition={{ duration: 1.0, delay: 0.4, ease: "easeOut" }}
+          style={{ marginTop: '60px' }}
+        >
           {/* Arrows Above Images */}
           <div
             style={{
@@ -358,7 +382,7 @@ const Team = () => {
               </p>
             </div>
           </div>
-        </div>
+        </motion.div>
       </div>
     </section>
   );

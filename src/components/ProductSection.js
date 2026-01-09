@@ -237,7 +237,12 @@ const ProductSection = () => {
               initial={{ x: 150, opacity: 0 }}
               whileInView={{ x: 0, opacity: 1 }}
               viewport={{ once: false, amount: 0.3 }}
-              transition={{ duration: 1.0, delay: 0.3, ease: [0.25, 0.1, 0.25, 1] }}
+              transition={{ 
+                duration: 1.2, 
+                delay: 0.3, 
+                ease: "easeOut",
+                opacity: { duration: 1.5 }
+              }}
             >
               <img
                 src="/assets/DocSim.png"
@@ -296,7 +301,12 @@ const ProductSection = () => {
                 initial={{ x: -150, opacity: 0 }}
                 whileInView={{ x: 0, opacity: 1 }}
                 viewport={{ once: false, amount: 0.3 }}
-                transition={{ duration: 1.0, delay: 0.3, ease: [0.25, 0.1, 0.25, 1] }}
+                transition={{ 
+                  duration: 1.2, 
+                  delay: 0.3, 
+                  ease: "easeOut",
+                  opacity: { duration: 1.5 }
+                }}
               >
                 <img
                   src="/assets/DocPilot.png"
@@ -628,7 +638,12 @@ const ProductSection = () => {
               initial={{ x: 150, opacity: 0 }}
               whileInView={{ x: 0, opacity: 1 }}
               viewport={{ once: false, amount: 0.3 }}
-              transition={{ duration: 1.0, delay: 0.3, ease: [0.25, 0.1, 0.25, 1] }}
+              transition={{ 
+                duration: 1.2, 
+                delay: 0.3, 
+                ease: "easeOut",
+                opacity: { duration: 1.5 }
+              }}
             >
               <img
                 src="/assets/Doxtract.png"
