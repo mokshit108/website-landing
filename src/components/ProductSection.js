@@ -1,15 +1,20 @@
 import React from 'react';
+import { motion } from 'framer-motion';
 
 const ProductSection = () => {
   return (
-    <section className="py-8 px-4 sm:px-6 lg:px-8 bg-white relative">
+    <section className="py-8 px-4 sm:px-6 lg:px-8 bg-white relative overflow-visible">
       {/* Design patch 2 - Top left */}
-      <div
+      <motion.div
         className="absolute pointer-events-none"
+        initial={{ x: -200, opacity: 0 }}
+        whileInView={{ x: 0, opacity: 1 }}
+        viewport={{ once: false, amount: 0.1 }}
+        transition={{ duration: 1.0, ease: [0.25, 0.1, 0.25, 1] }}
         style={{
           left: '0',
           top: '0',
-          zIndex: 1
+          zIndex: 10
         }}
       >
         <img
@@ -18,10 +23,17 @@ const ProductSection = () => {
           className="w-auto h-auto object-contain"
           style={{ width: '280px', height: '280px' }}
         />
-      </div>
+      </motion.div>
       <div className="max-w-7xl mx-auto relative z-10">
         {/* Centered small title */}
-        <div className="text-center mb-4" style={{ marginTop: '72px' }}>
+        <motion.div 
+          className="text-center mb-4" 
+          style={{ marginTop: '72px' }}
+          initial={{ y: -50, opacity: 0 }}
+          whileInView={{ y: 0, opacity: 1 }}
+          viewport={{ once: false, amount: 0.3 }}
+          transition={{ duration: 0.8, ease: [0.25, 0.1, 0.25, 1] }}
+        >
           <h3
             style={{
               background: 'linear-gradient(90deg, #CD6028 11%, #3E6EB4 100%)',
@@ -37,10 +49,16 @@ const ProductSection = () => {
           >
             features and benefits
           </h3>
-        </div>
+        </motion.div>
 
         {/* Centered "Our Products" heading */}
-        <div className="text-center mb-12">
+        <motion.div 
+          className="text-center mb-12"
+          initial={{ y: -50, opacity: 0 }}
+          whileInView={{ y: 0, opacity: 1 }}
+          viewport={{ once: false, amount: 0.3 }}
+          transition={{ duration: 0.8, delay: 0.2, ease: [0.25, 0.1, 0.25, 1] }}
+        >
           <h2
             style={{
               fontFamily: 'Raleway, sans-serif',
@@ -55,12 +73,19 @@ const ProductSection = () => {
           >
             Our Products
           </h2>
-        </div>
+        </motion.div>
 
         {/* Main content: Left side text, Right side image */}
-        <div className="flex flex-col lg:flex-row items-center" style={{ minHeight: '650px' }}>
+        <div className="flex flex-col lg:flex-row items-center" style={{ minHeight: '750px' }}>
           {/* Left Side - Content */}
-          <div className="flex flex-col space-y-4 w-full lg:w-1/2 text-left" style={{ width: '50%' }}>
+          <motion.div 
+            className="flex flex-col space-y-4 w-full lg:w-1/2 text-left" 
+            style={{ width: '50%' }}
+            initial={{ x: -150, opacity: 0 }}
+            whileInView={{ x: 0, opacity: 1 }}
+            viewport={{ once: false, amount: 0.3 }}
+            transition={{ duration: 1.0, ease: [0.25, 0.1, 0.25, 1] }}
+          >
             {/* DocSim Button */}
             <button
               className="text-white font-medium text-base py-3 px-8 rounded-3xl transition-colors duration-200 w-fit"
@@ -171,37 +196,68 @@ const ProductSection = () => {
                 Schedule a Demo
               </button>
             </div>
-          </div>
+          </motion.div>
 
           {/* Right Side - Image */}
           <div 
             className="flex justify-center lg:justify-end items-center w-full lg:w-1/2 relative"
             style={{
-              backgroundImage: 'url(/assets/product-shape.png)',
-              backgroundSize: 'auto 100%',
-              backgroundPosition: 'right 60%',
-              backgroundRepeat: 'no-repeat',
-              minHeight: '650px',
+              minHeight: '750px',
               width: '55%',
               overflow: 'visible'
             }}
           >
-            <div className="relative w-full max-w-lg z-10 mr-12 mb-8" style={{ marginLeft: '-20px' }}>
+            {/* Animated Background */}
+            <motion.div
+              className="absolute inset-0 pointer-events-none"
+              initial={{ x: 150, opacity: 0 }}
+              whileInView={{ 
+                x: [150, 0, 50],
+                opacity: [0, 1, 1]
+              }}
+              viewport={{ once: false, amount: 0.3 }}
+              transition={{ 
+                duration: 2.5,
+                times: [0, 0.4, 1],
+                ease: [0.25, 0.1, 0.25, 1]
+              }}
+              style={{
+                backgroundImage: 'url(/assets/product-shape.png)',
+                backgroundSize: 'contain',
+                backgroundPosition: 'right center',
+                backgroundRepeat: 'no-repeat',
+                width: '100%',
+                height: '100%'
+              }}
+            />
+            {/* Product Image - stays in place */}
+            <motion.div 
+              className="relative w-full max-w-lg z-10 mr-12 mb-8" 
+              style={{ marginLeft: '-20px' }}
+              initial={{ x: 150, opacity: 0 }}
+              whileInView={{ x: 0, opacity: 1 }}
+              viewport={{ once: false, amount: 0.3 }}
+              transition={{ duration: 1.0, delay: 0.3, ease: [0.25, 0.1, 0.25, 1] }}
+            >
               <img
                 src="/assets/DocSim.png"
                 alt="AI-Powered Document Similarity Engine"
                 className="w-11/12 h-auto object-contain rounded-lg"
                 style={{ borderRadius: '24px', transform: 'scale(1.14)' }}
               />
-            </div>
+            </motion.div>
           </div>
         </div>
 
         {/* New Section: DocPilot */}
         <div className="relative mt-16" style={{ minHeight: '600px' }}>
           {/* Design patch 1 - Top right */}
-          <div
+          <motion.div
             className="absolute pointer-events-none"
+            initial={{ x: 200, opacity: 0 }}
+            whileInView={{ x: 0, opacity: 1 }}
+            viewport={{ once: false, amount: 0.3 }}
+            transition={{ duration: 1.0, ease: [0.25, 0.1, 0.25, 1] }}
             style={{
               right: '0',
               top: '0',
@@ -214,11 +270,15 @@ const ProductSection = () => {
               className="w-auto h-auto object-contain"
               style={{ width: '200px', height: '200px' }}
             />
-          </div>
+          </motion.div>
           <div className="flex flex-col lg:flex-row items-center relative z-10" style={{ minHeight: '600px' }}>
             {/* Left Side - Image with Background */}
-            <div 
+            <motion.div 
               className="flex justify-center lg:justify-start items-center w-full lg:w-1/2 relative"
+              initial={{ x: -150, opacity: 0 }}
+              whileInView={{ x: 0, opacity: 1 }}
+              viewport={{ once: false, amount: 0.3 }}
+              transition={{ duration: 1.0, ease: [0.25, 0.1, 0.25, 1] }}
               style={{ 
                 width: '55%',
                 backgroundImage: 'url(/assets/shape-bg.png)',
@@ -230,18 +290,32 @@ const ProductSection = () => {
                 marginTop: '40px'
               }}
             >
-              <div className="relative w-full max-w-lg z-10" style={{ marginLeft: '110px' }}>
+              <motion.div 
+                className="relative w-full max-w-lg z-10" 
+                style={{ marginLeft: '110px' }}
+                initial={{ x: -150, opacity: 0 }}
+                whileInView={{ x: 0, opacity: 1 }}
+                viewport={{ once: false, amount: 0.3 }}
+                transition={{ duration: 1.0, delay: 0.3, ease: [0.25, 0.1, 0.25, 1] }}
+              >
                 <img
                   src="/assets/DocPilot.png"
                   alt="DocPilot"
                   className="w-full h-auto object-contain rounded-lg"
                   style={{ borderRadius: '24px' }}
                 />
-              </div>
-            </div>
+              </motion.div>
+            </motion.div>
 
             {/* Right Side - Content */}
-            <div className="flex flex-col space-y-6 w-full lg:w-1/2 text-left" style={{ width: '50%', marginTop: '60px' }}>
+            <motion.div 
+              className="flex flex-col space-y-6 w-full lg:w-1/2 text-left" 
+              style={{ width: '50%', marginTop: '60px' }}
+              initial={{ x: 150, opacity: 0 }}
+              whileInView={{ x: 0, opacity: 1 }}
+              viewport={{ once: false, amount: 0.3 }}
+              transition={{ duration: 1.0, ease: [0.25, 0.1, 0.25, 1] }}
+            >
               {/* DocPilot Button */}
               <button
                 className="text-white font-medium text-base rounded-[50px] transition-colors duration-200 w-fit"
@@ -360,15 +434,19 @@ const ProductSection = () => {
                   Schedule a Demo
                 </button>
               </div>
-            </div>
+            </motion.div>
           </div>
         </div>
 
         {/* New Section: Doxtract */}
-        <div className="relative flex flex-col lg:flex-row items-center mt-16" style={{ minHeight: '650px' }}>
+        <div className="relative flex flex-col lg:flex-row items-center mt-16" style={{ minHeight: '750px' }}>
           {/* Design patch 2 - Top left */}
-          <div
+          <motion.div
             className="absolute pointer-events-none"
+            initial={{ x: -200, opacity: 0 }}
+            whileInView={{ x: 0, opacity: 1 }}
+            viewport={{ once: false, amount: 0.3 }}
+            transition={{ duration: 1.0, ease: [0.25, 0.1, 0.25, 1] }}
             style={{
               left: '100px',
               top: '-80px',
@@ -381,9 +459,16 @@ const ProductSection = () => {
               className="w-auto h-auto object-contain"
               style={{ width: '280px', height: '280px', marginBottom: '70px' }}
             />
-          </div>
+          </motion.div>
           {/* Left Side - Content */}
-          <div className="flex flex-col space-y-4 w-full lg:w-1/2 text-left" style={{ width: '50%' }}>
+          <motion.div 
+            className="flex flex-col space-y-4 w-full lg:w-1/2 text-left" 
+            style={{ width: '50%' }}
+            initial={{ x: -150, opacity: 0 }}
+            whileInView={{ x: 0, opacity: 1 }}
+            viewport={{ once: false, amount: 0.3 }}
+            transition={{ duration: 1.0, ease: [0.25, 0.1, 0.25, 1] }}
+          >
             {/* Doxtract Button */}
             <button
               className="text-white font-medium text-base py-3 px-10 rounded-3xl transition-colors duration-200 w-fit"
@@ -502,29 +587,56 @@ const ProductSection = () => {
                 Schedule a Demo
               </button>
             </div>
-          </div>
+          </motion.div>
 
           {/* Right Side - Image */}
           <div 
             className="flex justify-center lg:justify-end items-center w-full lg:w-1/2 relative"
             style={{
-              backgroundImage: 'url(/assets/product-shape.png)',
-              backgroundSize: 'auto 100%',
-              backgroundPosition: 'right 60%',
-              backgroundRepeat: 'no-repeat',
-              minHeight: '650px',
+              minHeight: '750px',
               width: '55%',
               overflow: 'visible'
             }}
           >
-            <div className="relative w-full max-w-lg z-10 mr-12 mb-8" style={{ marginLeft: '-20px' }}>
+            {/* Animated Background */}
+            <motion.div
+              className="absolute inset-0 pointer-events-none"
+              initial={{ x: 150, opacity: 0 }}
+              whileInView={{ 
+                x: [150, 0, 50],
+                opacity: [0, 1, 1]
+              }}
+              viewport={{ once: false, amount: 0.3 }}
+              transition={{ 
+                duration: 2.5,
+                times: [0, 0.4, 1],
+                ease: [0.25, 0.1, 0.25, 1]
+              }}
+              style={{
+                backgroundImage: 'url(/assets/product-shape.png)',
+                backgroundSize: 'contain',
+                backgroundPosition: 'right center',
+                backgroundRepeat: 'no-repeat',
+                width: '100%',
+                height: '100%'
+              }}
+            />
+            {/* Product Image - stays in place */}
+            <motion.div 
+              className="relative w-full max-w-lg z-10 mr-12 mb-8" 
+              style={{ marginLeft: '-20px' }}
+              initial={{ x: 150, opacity: 0 }}
+              whileInView={{ x: 0, opacity: 1 }}
+              viewport={{ once: false, amount: 0.3 }}
+              transition={{ duration: 1.0, delay: 0.3, ease: [0.25, 0.1, 0.25, 1] }}
+            >
               <img
                 src="/assets/Doxtract.png"
                 alt="Extract, Validate, and Process Documents with Ease"
                 className="w-11/12 h-auto object-contain rounded-lg"
                 style={{ borderRadius: '24px', transform: 'scale(1.14)' }}
               />
-            </div>
+            </motion.div>
           </div>
         </div>
       </div>
