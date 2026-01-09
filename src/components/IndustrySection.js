@@ -26,10 +26,14 @@ const IndustrySection = () => {
       <motion.div 
         className="absolute pointer-events-none"
         initial={{ x: -500, opacity: 0 }}
-        whileInView={{ x: 0, opacity: 0.8 }}
+        whileInView={{ 
+          x: [-500, 0, -100],
+          opacity: [0, 0.8, 0.8]
+        }}
         viewport={{ once: false, amount: 0.05, margin: "0px 0px -200px 0px" }}
         transition={{ 
-          duration: 1.5, 
+          duration: 2.5,
+          times: [0, 0.4, 1],
           ease: [0.25, 0.1, 0.25, 1]
         }}
         style={{
@@ -101,8 +105,16 @@ const IndustrySection = () => {
         {/* Cards in slant direction (/) - First card top-right, second middle, third bottom-left */}
         <div className="relative w-full" style={{ minHeight: '750px', paddingBottom: '100px', marginTop: '40px' }}>
           {/* Design patch 1 - Left side of first card (half hidden) */}
-          <div
+          <motion.div
             className="absolute pointer-events-none"
+            initial={{ y: -150, opacity: 0 }}
+            whileInView={{ y: 0, opacity: 1 }}
+            viewport={{ once: false, amount: 0.3 }}
+            transition={{ 
+              duration: 1.0, 
+              delay: 0,
+              ease: [0.25, 0.1, 0.25, 1]
+            }}
             style={{
               left: 'calc(100% - 330px - 50px - 80px)',
               top: '0px',
@@ -115,7 +127,7 @@ const IndustrySection = () => {
               className="w-auto h-auto object-contain"
               style={{ width: '150px', height: '150px' }}
             />
-          </div>
+          </motion.div>
 
           {industries.map((industry, index) => {
             // Position calculations for "/" diagonal pattern
@@ -140,9 +152,26 @@ const IndustrySection = () => {
             ];
             
             return (
-              <div
+              <motion.div
                 key={index}
-                className="bg-white border-2 border-gray-200 p-6 absolute transition-all duration-300"
+                className="bg-white border-2 border-gray-200 p-6 absolute"
+                initial={{ 
+                  x: 350, 
+                  y: -150, 
+                  opacity: 0 
+                }}
+                whileInView={{ 
+                  x: 0, 
+                  y: 0, 
+                  opacity: 1 
+                }}
+                viewport={{ once: false, amount: 0.3 }}
+                transition={{ 
+                  duration: 1.1, 
+                  delay: index * 0.25,
+                  ease: [0.25, 0.1, 0.25, 1],
+                  type: "tween"
+                }}
                 style={{
                   width: `${cardWidth}px`,
                   height: `${cardHeight}px`,
@@ -154,14 +183,11 @@ const IndustrySection = () => {
                   alignItems: 'center',
                   borderRadius: '16px',
                   boxShadow: '0 10px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04)',
-                  transition: 'box-shadow 0.3s ease',
-                  zIndex: index === 0 ? 10 : 5
+                  zIndex: 10 - index,
+                  willChange: 'transform, opacity'
                 }}
-                onMouseEnter={(e) => {
-                  e.currentTarget.style.boxShadow = '0 20px 40px -5px rgba(0, 0, 0, 0.15), 0 10px 10px -5px rgba(0, 0, 0, 0.08)';
-                }}
-                onMouseLeave={(e) => {
-                  e.currentTarget.style.boxShadow = '0 10px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04)';
+                whileHover={{
+                  boxShadow: '0 20px 40px -5px rgba(0, 0, 0, 0.15), 0 10px 10px -5px rgba(0, 0, 0, 0.08)'
                 }}
               >
               {/* Icon above title */}
@@ -195,14 +221,22 @@ const IndustrySection = () => {
               >
                 {industry.content}
               </p>
-            </div>
+            </motion.div>
             );
           })}
         </div>
 
         {/* Design patch 2 - Bottom right of the section */}
-        <div
+        <motion.div
           className="absolute pointer-events-none"
+          initial={{ x: 200, opacity: 0 }}
+          whileInView={{ x: 0, opacity: 1 }}
+          viewport={{ once: false, amount: 0.3 }}
+          transition={{ 
+            duration: 1.0, 
+            delay: 0,
+            ease: [0.25, 0.1, 0.25, 1]
+          }}
           style={{
             right: '0',
             bottom: '0',
@@ -215,7 +249,7 @@ const IndustrySection = () => {
             className="w-auto h-auto object-contain"
             style={{ width: '240px', height: '240px' }}
           />
-        </div>
+        </motion.div>
       </div>
     </section>
   );
