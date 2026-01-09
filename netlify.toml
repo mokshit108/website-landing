@@ -1,0 +1,67 @@
+# Netlify Configuration File
+# Documentation: https://docs.netlify.com/configure-builds/file-based-configuration/
+
+[build]
+  # Build command
+  command = "npm run build"
+  
+  # Directory to publish (output directory)
+  publish = "build"
+  
+  # Base directory (root of the project)
+  base = ""
+
+[build.environment]
+  # Node.js version to use
+  NODE_VERSION = "18"
+  
+  # Enable production mode
+  NODE_ENV = "production"
+
+# Redirect rules for Single Page Application (SPA)
+# This ensures that React Router works correctly
+[[redirects]]
+  from = "/*"
+  to = "/index.html"
+  status = 200
+
+# Optional: Add custom headers for security
+[[headers]]
+  for = "/*"
+  [headers.values]
+    # Security headers
+    X-Frame-Options = "DENY"
+    X-Content-Type-Options = "nosniff"
+    X-XSS-Protection = "1; mode=block"
+    Referrer-Policy = "strict-origin-when-cross-origin"
+    
+    # Cache control for static assets
+    Cache-Control = "public, max-age=31536000, immutable"
+
+# Cache static assets
+[[headers]]
+  for = "/*.js"
+  [headers.values]
+    Cache-Control = "public, max-age=31536000, immutable"
+
+[[headers]]
+  for = "/*.css"
+  [headers.values]
+    Cache-Control = "public, max-age=31536000, immutable"
+
+[[headers]]
+  for = "/*.png"
+  [headers.values]
+    Cache-Control = "public, max-age=31536000, immutable"
+
+[[headers]]
+  for = "/*.jpg"
+  [headers.values]
+    Cache-Control = "public, max-age=31536000, immutable"
+
+# Optional: Custom 404 page (uncomment if you create one)
+# [[redirects]]
+#   from = "/404"
+#   to = "/404.html"
+#   status = 404
+
