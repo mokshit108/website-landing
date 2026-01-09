@@ -1,4 +1,5 @@
 import React from 'react';
+import { motion } from 'framer-motion';
 
 const IndustrySection = () => {
   const industries = [
@@ -21,27 +22,46 @@ const IndustrySection = () => {
 
   return (
     <section className="py-16 px-4 sm:px-6 lg:px-8 bg-white relative overflow-hidden">
-      {/* Shape background covering 50% of the screen */}
-      <div 
-        className="absolute inset-0 pointer-events-none"
+      {/* Shape background covering 50% of the screen with animation */}
+      <motion.div 
+        className="absolute pointer-events-none"
+        initial={{ x: -500, opacity: 0 }}
+        whileInView={{ x: 0, opacity: 0.8 }}
+        viewport={{ once: false, amount: 0.05, margin: "0px 0px -200px 0px" }}
+        transition={{ 
+          duration: 1.5, 
+          ease: [0.25, 0.1, 0.25, 1]
+        }}
         style={{
-          backgroundImage: 'url(/assets/shape-bg.png)',
-          backgroundSize: 'cover',
-          backgroundPosition: 'center',
-          backgroundRepeat: 'no-repeat',
-          width: '50%',
-          height: '850px',
-          right: 0,
+          position: 'absolute',
+          left: '80px',
           top: 0,
+          width: '45%',
+          height: '95%',
+          backgroundImage: 'url(/assets/shape-bg.png)',
+          backgroundSize: 'contain',
+          backgroundPosition: 'left center',
+          backgroundRepeat: 'no-repeat',
           zIndex: 0,
           opacity: 0.8
         }}
       />
       <div className="max-w-7xl mx-auto relative z-10">
         {/* Title and content positioned on the left, at the same level as first card */}
-        <div className="absolute left-0 flex flex-col space-y-3" style={{ maxWidth: 'calc(50% - 50px)', marginTop: '8px' }}>
+        <motion.div 
+          className="absolute left-0 flex flex-col space-y-3" 
+          style={{ maxWidth: 'calc(50% - 50px)', marginTop: '8px' }}
+          initial={{ x: -200, opacity: 0 }}
+          whileInView={{ x: 0, opacity: 1 }}
+          viewport={{ once: false, amount: 0.05, margin: "0px 0px -200px 0px" }}
+          transition={{ 
+            duration: 1.2, 
+            ease: [0.25, 0.1, 0.25, 1],
+            delay: 0.2
+          }}
+        >
           {/* Title with gradient text color */}
-          <h2 
+          <motion.h2 
             className="text-left"
             style={{ 
               background: 'linear-gradient(90deg, #CD6028 11%, #3E6EB4 100%)',
@@ -59,10 +79,10 @@ const IndustrySection = () => {
             }}
           >
             AI-driven innovation for growth.
-          </h2>
+          </motion.h2>
 
           {/* Subtitle */}
-          <h3 
+          <motion.h3 
             className="text-black text-left"
             style={{ 
               fontFamily: 'Raleway, sans-serif',
@@ -75,8 +95,8 @@ const IndustrySection = () => {
             }}
           >
             Industries We Empower
-          </h3>
-        </div>
+          </motion.h3>
+        </motion.div>
 
         {/* Cards in slant direction (/) - First card top-right, second middle, third bottom-left */}
         <div className="relative w-full" style={{ minHeight: '750px', paddingBottom: '100px', marginTop: '40px' }}>
