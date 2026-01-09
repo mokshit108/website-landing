@@ -122,14 +122,10 @@ const Navigation = ({ splashComplete = false }) => {
           <div className="hidden md:block">
             <div className="ml-16 flex items-baseline space-x-4">
               {navLinks.map((link) => (
-                <a
+                <button
                   key={link}
-                  href="#"
-                  onClick={(e) => {
-                    e.preventDefault();
-                    handleNavigation(link);
-                  }}
-                  className={`text-lg leading-[22px] px-3 py-2 rounded-md font-medium transition-colors duration-200 ${
+                  onClick={() => handleNavigation(link)}
+                  className={`text-lg leading-[22px] px-3 py-2 rounded-md font-medium transition-colors duration-200 bg-transparent border-0 cursor-pointer ${
                     activeLink === link
                       ? 'text-[#3E6EB4] font-medium'
                       : 'text-gray-700 font-normal hover:text-[#3E6EB4]'
@@ -137,7 +133,7 @@ const Navigation = ({ splashComplete = false }) => {
                   style={{ fontFamily: 'Manrope, sans-serif' }}
                 >
                   {link}
-                </a>
+                </button>
               ))}
             </div>
           </div>
@@ -164,14 +160,10 @@ const Navigation = ({ splashComplete = false }) => {
       <div className="md:hidden">
         <div className="px-2 pt-2 pb-3 space-y-1 sm:px-3 bg-white border-t">
           {navLinks.map((link) => (
-            <a
+            <button
               key={link}
-              href="#"
-              onClick={(e) => {
-                e.preventDefault();
-                handleNavigation(link);
-              }}
-              className={`text-lg leading-[22px] block px-3 py-2 rounded-md font-medium ${
+              onClick={() => handleNavigation(link)}
+              className={`text-lg leading-[22px] block w-full text-left px-3 py-2 rounded-md font-medium bg-transparent border-0 cursor-pointer ${
                 activeLink === link
                   ? 'text-[#3E6EB4] font-medium bg-blue-50'
                   : 'text-gray-700 font-normal hover:text-[#3E6EB4] hover:bg-gray-50'
@@ -179,7 +171,7 @@ const Navigation = ({ splashComplete = false }) => {
               style={{ fontFamily: 'Manrope, sans-serif' }}
             >
               {link}
-            </a>
+            </button>
           ))}
         </div>
       </div>
