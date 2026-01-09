@@ -1,8 +1,13 @@
 import React from 'react';
+import { motion } from 'framer-motion';
 
 const Footer = () => {
   return (
-    <footer 
+    <motion.footer 
+      initial={{ y: 100, opacity: 0 }}
+      whileInView={{ y: 0, opacity: 1 }}
+      viewport={{ once: false, amount: 0.2 }}
+      transition={{ duration: 1.0, ease: [0.25, 0.1, 0.25, 1] }}
       style={{ 
         background: '#3E6EB4',
         padding: '60px 0',
@@ -51,7 +56,7 @@ const Footer = () => {
           </div>
         </div>
       </div>
-    </footer>
+    </motion.footer>
   );
 };
 
