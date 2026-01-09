@@ -3,6 +3,7 @@ import React, { useState, useEffect } from 'react';
 const MainSection = ({ splashComplete = false }) => {
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
   const [showContent, setShowContent] = useState(false);
+  const [showScanning, setShowScanning] = useState(false);
   
   const heroImages = [
     '/assets/hero-growth.png',
@@ -12,11 +13,21 @@ const MainSection = ({ splashComplete = false }) => {
 
   useEffect(() => {
     const interval = setInterval(() => {
+      setShowScanning(false); // Reset scanning when changing image
       setCurrentImageIndex((prevIndex) => (prevIndex + 1) % heroImages.length);
     }, 3000); // Switch every 3 seconds
 
     return () => clearInterval(interval);
   }, [heroImages.length]);
+
+  useEffect(() => {
+    // Show scanning effect after image transition completes
+    const scanTimer = setTimeout(() => {
+      setShowScanning(true);
+    }, 800); // Wait for opacity transition to complete
+
+    return () => clearTimeout(scanTimer);
+  }, [currentImageIndex]);
 
   useEffect(() => {
     // Wait for splash + navigation animation to complete before showing content
@@ -31,11 +42,22 @@ const MainSection = ({ splashComplete = false }) => {
   }, [splashComplete]);
 
   return (
-    <section className="py-16 px-4 sm:px-6 lg:px-8 bg-transparent relative overflow-x-hidden">
-      <div className="max-w-7xl mx-auto relative z-10">
-        <div className="flex flex-col lg:flex-row gap-12 items-center">
-          {/* Left Side - 42% */}
-          <div 
+    <>
+      <style>{`
+        @keyframes scan {
+          0% {
+            transform: translateY(-100%);
+          }
+          100% {
+            transform: translateY(200%);
+          }
+        }
+      `}</style>
+      <section className="py-16 px-4 sm:px-6 lg:px-8 bg-transparent relative overflow-x-hidden">
+        <div className="max-w-7xl mx-auto relative z-10">
+          <div className="flex flex-col lg:flex-row gap-12 items-center">
+            {/* Left Side - 42% */}
+            <div 
             className="flex flex-col space-y-6 mt-12 w-full lg:w-[42%]"
             style={{
               transform: showContent ? 'translateX(0)' : 'translateX(-100%)',
@@ -121,25 +143,43 @@ const MainSection = ({ splashComplete = false }) => {
               willChange: 'transform, opacity'
             }}
           >
-            <div className="relative w-full max-w-lg" style={{ minHeight: '400px' }}>
-              {heroImages.map((imageSrc, index) => (
-                <img 
-                  key={imageSrc}
-                  src={imageSrc} 
-                  alt={`Hero ${index + 1}`} 
-                  className="w-full h-auto object-contain absolute top-0 left-0"
-                  style={{
-                    opacity: currentImageIndex === index ? 1 : 0,
-                    transition: 'opacity 0.8s ease-in-out',
-                    pointerEvents: currentImageIndex === index ? 'auto' : 'none'
-                  }}
-                />
-              ))}
+            <div className="relative w-full max-w-lg overflow-hidden" style={{ minHeight: '400px' }}>
+              {heroImages.map((imageSrc, index) => {
+                const isActive = currentImageIndex === index;
+                
+                return (
+                  <div key={imageSrc} className="absolute top-0 left-0 w-full h-full">
+                    <img 
+                      src={imageSrc} 
+                      alt={`Hero ${index + 1}`} 
+                      className="w-full h-auto object-contain"
+                      style={{
+                        opacity: isActive ? 1 : 0,
+                        transition: 'opacity 0.8s ease-in-out',
+                        pointerEvents: isActive ? 'auto' : 'none'
+                      }}
+                    />
+                    {/* Scanning Effect */}
+                    {isActive && showScanning && (
+                      <div 
+                        className="absolute top-0 left-0 w-full h-full pointer-events-none"
+                        style={{
+                          background: 'linear-gradient(180deg, transparent 0%, rgba(62, 110, 180, 0.4) 50%, transparent 100%)',
+                          animation: 'scan 2s linear infinite',
+                          height: '30%',
+                          width: '100%'
+                        }}
+                      />
+                    )}
+                  </div>
+                );
+              })}
             </div>
           </div>
+          </div>
         </div>
-      </div>
-    </section>
+      </section>
+    </>
   );
 };
 
