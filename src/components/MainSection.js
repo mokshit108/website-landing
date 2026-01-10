@@ -7,15 +7,15 @@ const MainSection = ({ splashComplete = false }) => {
   
   const heroImages = [
     '/assets/hero-growth.png',
-    '/assets/hero-invoice.png',
-    '/assets/hero-license.png'
+    '/assets/hero-license.png',
+    '/assets/hero-invoice.png'
   ];
 
   useEffect(() => {
     const interval = setInterval(() => {
       setShowScanning(false); // Reset scanning when changing image
       setCurrentImageIndex((prevIndex) => (prevIndex + 1) % heroImages.length);
-    }, 3000); // Switch every 3 seconds
+    }, 4000); // Switch every 4 seconds for smoother circular animation
 
     return () => clearInterval(interval);
   }, [heroImages.length]);
@@ -143,37 +143,49 @@ const MainSection = ({ splashComplete = false }) => {
               willChange: 'transform, opacity'
             }}
           >
-            <div className="relative w-full max-w-sm md:max-w-lg overflow-hidden" style={{ minHeight: 'clamp(250px, 50vw, 400px)' }}>
-              {heroImages.map((imageSrc, index) => {
-                const isActive = currentImageIndex === index;
-                
-                return (
-                  <div key={imageSrc} className="absolute top-0 left-0 w-full h-full">
-                    <img 
-                      src={imageSrc} 
-                      alt={`Hero ${index + 1}`} 
-                      className="w-full h-auto object-contain"
+            <div className="relative w-full max-w-sm md:max-w-lg" style={{ minHeight: 'clamp(250px, 50vw, 400px)', perspective: '1000px' }}>
+              <div className="relative w-full h-full" style={{ transformStyle: 'preserve-3d' }}>
+                {heroImages.map((imageSrc, index) => {
+                  const angle = (index * 360) / heroImages.length;
+                  const rotationOffset = (currentImageIndex * 360) / heroImages.length;
+                  const currentRotation = angle - rotationOffset;
+                  const isActive = Math.abs(currentRotation % 360) < 10 || Math.abs(currentRotation % 360) > 350;
+
+                  return (
+                    <div
+                      key={imageSrc}
+                      className="absolute w-full h-full"
                       style={{
-                        opacity: isActive ? 1 : 0,
-                        transition: 'opacity 0.8s ease-in-out',
-                        pointerEvents: isActive ? 'auto' : 'none'
+                        transform: `rotateY(${currentRotation}deg) translateZ(150px)`,
+                        transition: 'transform 1.2s cubic-bezier(0.4, 0, 0.2, 1)',
+                        transformStyle: 'preserve-3d'
                       }}
-                    />
-                    {/* Scanning Effect */}
-                    {isActive && showScanning && (
-                      <div 
-                        className="absolute top-0 left-0 w-full h-full pointer-events-none"
+                    >
+                      <img
+                        src={imageSrc}
+                        alt={`Hero ${index + 1}`}
+                        className="w-full h-auto object-contain"
                         style={{
-                          background: 'linear-gradient(180deg, transparent 0%, rgba(62, 110, 180, 0.4) 50%, transparent 100%)',
-                          animation: 'scan 2s linear infinite',
-                          height: '30%',
-                          width: '100%'
+                          opacity: isActive ? 1 : 0,
+                          transition: 'opacity 0.8s ease-out'
                         }}
                       />
-                    )}
-                  </div>
-                );
-              })}
+                      {/* Scanning Effect */}
+                      {isActive && showScanning && (
+                        <div
+                          className="absolute top-0 left-0 w-full h-full pointer-events-none"
+                          style={{
+                            background: 'linear-gradient(180deg, transparent 0%, rgba(62, 110, 180, 0.4) 50%, transparent 100%)',
+                            animation: 'scan 2s linear infinite',
+                            height: '30%',
+                            width: '100%'
+                          }}
+                        />
+                      )}
+                    </div>
+                  );
+                })}
+              </div>
             </div>
           </div>
           </div>
