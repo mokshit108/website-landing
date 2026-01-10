@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 
 const MainSection = ({ splashComplete = false }) => {
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
+  const [rotationOffset, setRotationOffset] = useState(0);
   const [showContent, setShowContent] = useState(false);
   const [showScanning, setShowScanning] = useState(false);
   
@@ -15,6 +16,7 @@ const MainSection = ({ splashComplete = false }) => {
     const interval = setInterval(() => {
       setShowScanning(false); // Reset scanning when changing image
       setCurrentImageIndex((prevIndex) => (prevIndex + 1) % heroImages.length);
+      setRotationOffset((prevOffset) => prevOffset + (360 / heroImages.length));
     }, 4000); // Switch every 4 seconds for smoother circular animation
 
     return () => clearInterval(interval);
@@ -147,9 +149,9 @@ const MainSection = ({ splashComplete = false }) => {
               <div className="relative w-full h-full" style={{ transformStyle: 'preserve-3d' }}>
                 {heroImages.map((imageSrc, index) => {
                   const angle = (index * 360) / heroImages.length;
-                  const rotationOffset = (currentImageIndex * 360) / heroImages.length;
                   const currentRotation = angle - rotationOffset;
-                  const isActive = Math.abs(currentRotation % 360) < 10 || Math.abs(currentRotation % 360) > 350;
+                  const normalizedRotation = ((currentRotation % 360) + 360) % 360;
+                  const isActive = normalizedRotation < 10 || normalizedRotation > 350;
 
                   return (
                     <div

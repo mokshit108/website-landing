@@ -43,7 +43,7 @@ const ContactUs = () => {
           className="absolute pointer-events-none hidden md:block"
           initial={{ y: -150, opacity: 0 }}
           whileInView={{
-            y: [-150, 0, 0],
+            y: [-150, -50, -50],
             x: [0, 0, 40],
             opacity: [0, 1, 1]
           }}
@@ -55,8 +55,8 @@ const ContactUs = () => {
           }}
           style={{
             left: '-140px',
-            top: '0',
-            zIndex: 20
+            top: '-80px',
+            zIndex: 1
           }}
         >
           <img
