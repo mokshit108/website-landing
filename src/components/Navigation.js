@@ -6,6 +6,7 @@ import { useNavigate, useLocation } from 'react-router-dom';
 const Navigation = ({ splashComplete = false }) => {
   const [activeLink, setActiveLink] = useState('Home');
   const [isVisible, setIsVisible] = useState(false);
+  const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const navigate = useNavigate();
   const location = useLocation();
 
@@ -24,6 +25,7 @@ const Navigation = ({ splashComplete = false }) => {
 
   const handleNavigation = (link) => {
     setActiveLink(link);
+    setMobileMenuOpen(false); // Close mobile menu on navigation
     
     // If clicking "About Us", navigate to /about-us page
     if (link === 'About Us') {
@@ -75,7 +77,7 @@ const Navigation = ({ splashComplete = false }) => {
         <div className="flex justify-between items-center min-h-20 py-2">
           {/* Logo and Company Name - Left Side */}
           <div 
-            className="flex-shrink-0 flex items-center space-x-2 -ml-4 cursor-pointer"
+            className="flex-shrink-0 flex items-center space-x-2 -ml-4 md:-ml-4 -ml-0 cursor-pointer"
             onClick={() => navigate('/')}
             style={{
               opacity: splashComplete ? 1 : 0,
@@ -88,7 +90,7 @@ const Navigation = ({ splashComplete = false }) => {
             <img 
               src="/assets/logo.png" 
               alt="AADRILA Logo" 
-              className="h-14 w-auto"
+              className="h-10 md:h-14 w-auto"
             />
             <div className="flex flex-col">
               <h1 
@@ -96,7 +98,7 @@ const Navigation = ({ splashComplete = false }) => {
                 style={{ 
                   fontFamily: 'Raleway, sans-serif',
                   fontWeight: 500,
-                  fontSize: '30px',
+                  fontSize: 'clamp(20px, 4vw, 30px)',
                   lineHeight: '1'
                 }}
               >
@@ -107,7 +109,7 @@ const Navigation = ({ splashComplete = false }) => {
                 style={{ 
                   fontFamily: 'Raleway, sans-serif',
                   fontWeight: 800,
-                  fontSize: '10px',
+                  fontSize: 'clamp(7px, 1.5vw, 10px)',
                   lineHeight: '1.2',
                   marginTop: '2px',
                   letterSpacing: '0.4em'
@@ -138,8 +140,8 @@ const Navigation = ({ splashComplete = false }) => {
             </div>
           </div>
 
-          {/* Get Demo Button - Right Side */}
-          <div className="flex-shrink-0 ml-8 mr-0">
+          {/* Get Demo Button - Right Side (Hidden on mobile) */}
+          <div className="hidden md:flex flex-shrink-0 ml-8 mr-0">
             <button className="bg-[#3E6EB4] hover:bg-blue-700 text-white font-medium text-md leading-[18px] px-10 py-3 rounded-3xl transition-colors duration-200" style={{ fontFamily: 'Manrope, sans-serif', minWidth: '140px' }}>
               Get Demo
             </button>
@@ -147,34 +149,52 @@ const Navigation = ({ splashComplete = false }) => {
 
           {/* Mobile menu button */}
           <div className="md:hidden">
-            <button className="text-gray-700 hover:text-[#3E6EB4] p-2">
-              <svg className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 6h16M4 12h16M4 18h16" />
-              </svg>
+            <button 
+              onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
+              className="text-gray-700 hover:text-[#3E6EB4] p-2"
+              aria-label="Toggle menu"
+            >
+              {mobileMenuOpen ? (
+                <svg className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
+                </svg>
+              ) : (
+                <svg className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 6h16M4 12h16M4 18h16" />
+                </svg>
+              )}
             </button>
           </div>
         </div>
       </div>
 
       {/* Mobile Navigation Menu */}
-      <div className="md:hidden">
-        <div className="px-2 pt-2 pb-3 space-y-1 sm:px-3 bg-white border-t">
-          {navLinks.map((link) => (
-            <button
-              key={link}
-              onClick={() => handleNavigation(link)}
-              className={`text-lg leading-[22px] block w-full text-left px-3 py-2 rounded-md font-medium bg-transparent border-0 cursor-pointer ${
-                activeLink === link
-                  ? 'text-[#3E6EB4] font-medium bg-blue-50'
-                  : 'text-gray-700 font-normal hover:text-[#3E6EB4] hover:bg-gray-50'
-              }`}
-              style={{ fontFamily: 'Manrope, sans-serif' }}
-            >
-              {link}
-            </button>
-          ))}
+      {mobileMenuOpen && (
+        <div className="md:hidden">
+          <div className="px-2 pt-2 pb-3 space-y-1 sm:px-3 bg-white border-t">
+            {navLinks.map((link) => (
+              <button
+                key={link}
+                onClick={() => handleNavigation(link)}
+                className={`text-base leading-[20px] block w-full text-left px-3 py-2 rounded-md font-medium bg-transparent border-0 cursor-pointer ${
+                  activeLink === link
+                    ? 'text-[#3E6EB4] font-medium bg-blue-50'
+                    : 'text-gray-700 font-normal hover:text-[#3E6EB4] hover:bg-gray-50'
+                }`}
+                style={{ fontFamily: 'Manrope, sans-serif' }}
+              >
+                {link}
+              </button>
+            ))}
+            {/* Get Demo button in mobile menu */}
+            <div className="pt-2 px-3">
+              <button className="w-full bg-[#3E6EB4] hover:bg-blue-700 text-white font-medium text-sm leading-[16px] px-6 py-2.5 rounded-3xl transition-colors duration-200" style={{ fontFamily: 'Manrope, sans-serif' }}>
+                Get Demo
+              </button>
+            </div>
+          </div>
         </div>
-      </div>
+      )}
     </nav>
   );
 };

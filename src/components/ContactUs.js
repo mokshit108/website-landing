@@ -33,22 +33,22 @@ const ContactUs = () => {
           .contact-form-textarea::placeholder {
             color: #959595;
             opacity: 1;
-            font-size: 16px;
+            font-size: clamp(14px, 3.5vw, 16px);
           }
         `}
       </style>
-      <section className="py-16 px-4 sm:px-6 lg:px-8 bg-white relative overflow-visible" style={{ paddingTop: '80px', paddingBottom: '0' }}>
+      <section className="py-8 md:py-16 px-4 sm:px-6 lg:px-8 bg-white relative overflow-visible" style={{ paddingTop: 'clamp(40px, 10vw, 80px)', paddingBottom: '0' }}>
         {/* Design patch 2 - Top left (half visible from vertical side) */}
         <motion.div
-          className="absolute pointer-events-none"
+          className="absolute pointer-events-none hidden md:block"
           initial={{ y: -150, opacity: 0 }}
-          whileInView={{ 
+          whileInView={{
             y: [-150, 0, 0],
             x: [0, 0, 40],
             opacity: [0, 1, 1]
           }}
           viewport={{ once: false, amount: 0.05 }}
-          transition={{ 
+          transition={{
             duration: 2.0,
             times: [0, 0.5, 1],
             ease: [0.25, 0.1, 0.25, 1]
@@ -66,10 +66,10 @@ const ContactUs = () => {
             style={{ width: '280px', height: '280px' }}
           />
         </motion.div>
-        <div className="max-w-7xl mx-auto relative mt-12" style={{ zIndex: 2 }}>
-        <div className="flex flex-col lg:flex-row gap-12">
+        <div className="max-w-7xl mx-auto relative mt-8 md:mt-12" style={{ zIndex: 2 }}>
+        <div className="flex flex-col lg:flex-row gap-8 md:gap-12">
           {/* Left Side - Contact Information */}
-          <motion.div 
+          <motion.div
             className="w-full lg:w-[45%]"
             initial={{ x: -150, opacity: 0 }}
             whileInView={{ x: 0, opacity: 1 }}
@@ -81,11 +81,11 @@ const ContactUs = () => {
               style={{
                 fontFamily: 'Raleway, sans-serif',
                 fontWeight: 600,
-                fontSize: '48px',
+                fontSize: 'clamp(32px, 8vw, 48px)',
                 lineHeight: '100%',
                 letterSpacing: '-1px',
                 color: '#141219',
-                marginBottom: '24px',
+                marginBottom: 'clamp(16px, 4vw, 24px)',
                 textAlign: 'left'
               }}
             >
@@ -101,10 +101,10 @@ const ContactUs = () => {
                 backgroundClip: 'text',
                 fontFamily: 'Manrope, sans-serif',
                 fontWeight: 400,
-                fontSize: '20px',
+                fontSize: 'clamp(16px, 4vw, 20px)',
                 lineHeight: '100%',
                 letterSpacing: '0px',
-                marginBottom: '32px',
+                marginBottom: 'clamp(24px, 6vw, 32px)',
                 textAlign: 'left'
               }}
             >
@@ -112,18 +112,18 @@ const ContactUs = () => {
             </p>
 
             {/* U.S. Office Section */}
-            <div style={{ marginBottom: '24px' }}>
-              <div style={{ display: 'flex', alignItems: 'flex-start', gap: '4px', marginBottom: '12px' }}>
-                <img 
-                  src="/assets/location.png" 
-                  alt="Location" 
-                  style={{ width: '18px', height: '18px', flexShrink: 0, marginTop: '3px', objectFit: 'contain' }}
+            <div style={{ marginBottom: 'clamp(16px, 4vw, 24px)' }}>
+              <div style={{ display: 'flex', alignItems: 'flex-start', gap: '4px', marginBottom: 'clamp(8px, 2vw, 12px)' }}>
+                <img
+                  src="/assets/location.png"
+                  alt="Location"
+                  style={{ width: 'clamp(16px, 4vw, 18px)', height: 'clamp(16px, 4vw, 18px)', flexShrink: 0, marginTop: '3px', objectFit: 'contain' }}
                 />
                 <span
                   style={{
                     fontFamily: 'Raleway, sans-serif',
                     fontWeight: 800,
-                    fontSize: '16px',
+                    fontSize: 'clamp(14px, 3.5vw, 16px)',
                     lineHeight: '120%',
                     letterSpacing: '0px',
                     textDecoration: 'underline',
@@ -138,7 +138,7 @@ const ContactUs = () => {
                 style={{
                   fontFamily: 'Raleway, sans-serif',
                   fontWeight: 400,
-                  fontSize: '16px',
+                  fontSize: 'clamp(14px, 3.5vw, 16px)',
                   lineHeight: '120%',
                   letterSpacing: '0px',
                   color: '#141219',
@@ -152,18 +152,18 @@ const ContactUs = () => {
             </div>
 
             {/* Indian Office Section */}
-            <div style={{ marginTop: '32px' }}>
-              <div style={{ display: 'flex', alignItems: 'flex-start', gap: '4px', marginBottom: '12px' }}>
-                <img 
-                  src="/assets/location.png" 
-                  alt="Location" 
-                  style={{ width: '18px', height: '18px', flexShrink: 0, marginTop: '3px', objectFit: 'contain' }}
+            <div style={{ marginTop: 'clamp(24px, 6vw, 32px)' }}>
+              <div style={{ display: 'flex', alignItems: 'flex-start', gap: '4px', marginBottom: 'clamp(8px, 2vw, 12px)' }}>
+                <img
+                  src="/assets/location.png"
+                  alt="Location"
+                  style={{ width: 'clamp(16px, 4vw, 18px)', height: 'clamp(16px, 4vw, 18px)', flexShrink: 0, marginTop: '3px', objectFit: 'contain' }}
                 />
                 <span
                   style={{
                     fontFamily: 'Raleway, sans-serif',
                     fontWeight: 800,
-                    fontSize: '16px',
+                    fontSize: 'clamp(14px, 3.5vw, 16px)',
                     lineHeight: '120%',
                     letterSpacing: '0px',
                     textDecoration: 'underline',
@@ -178,7 +178,7 @@ const ContactUs = () => {
                 style={{
                   fontFamily: 'Raleway, sans-serif',
                   fontWeight: 400,
-                  fontSize: '16px',
+                  fontSize: 'clamp(14px, 3.5vw, 16px)',
                   lineHeight: '120%',
                   letterSpacing: '0px',
                   color: '#141219',
@@ -193,9 +193,9 @@ const ContactUs = () => {
           </motion.div>
 
           {/* Right Side - Contact Form */}
-          <motion.div 
-            className="w-full lg:w-[55%]" 
-            style={{ position: 'relative', zIndex: 10, marginTop: '30px', marginBottom: "-50px"  }}
+          <motion.div
+            className="w-full lg:w-[55%]"
+            style={{ position: 'relative', zIndex: 10, marginTop: 'clamp(20px, 5vw, 30px)', marginBottom: "clamp(-25px, -6vw, -50px)"  }}
             initial={{ y: 150, opacity: 0 }}
             whileInView={{ y: 0, opacity: 1 }}
             viewport={{ once: false, amount: 0.3 }}
@@ -204,21 +204,21 @@ const ContactUs = () => {
             <div
               style={{
                 background: '#FFFFFF',
-                borderRadius: '16px',
-                padding: '40px',
-                paddingTop: '60px',
-                paddingBottom: '80px',
+                borderRadius: 'clamp(12px, 3vw, 16px)',
+                padding: 'clamp(20px, 5vw, 40px)',
+                paddingTop: 'clamp(30px, 7.5vw, 60px)',
+                paddingBottom: 'clamp(40px, 10vw, 80px)',
                 boxShadow: '0 4px 20px rgba(0, 0, 0, 0.08)',
                 border: '1px solid #F0F0F0',
-                minHeight: '700px',
-                marginBottom: '-100px',
+                minHeight: 'clamp(500px, 70vw, 700px)',
+                marginBottom: 'clamp(-50px, -12.5vw, -100px)',
                 position: 'relative',
                 zIndex: 10
               }}
             >
-              <form onSubmit={handleSubmit} className="space-y-6 pt-4">
+              <form onSubmit={handleSubmit} className="space-y-4 md:space-y-6 pt-2 md:pt-4">
               {/* Row 1: Full Name and Email */}
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-3 md:gap-4">
                 <div>
                   <input
                     type="text"
@@ -230,9 +230,9 @@ const ContactUs = () => {
                     className="contact-form-input"
                     style={{
                       width: '100%',
-                      padding: '12px 16px',
+                      padding: 'clamp(10px, 2.5vw, 12px) clamp(12px, 3vw, 16px)',
                       fontFamily: 'Manrope, sans-serif',
-                      fontSize: '14px',
+                      fontSize: 'clamp(14px, 3.5vw, 16px)',
                       border: '1px solid #E0E0E0',
                       borderRadius: '8px',
                       outline: 'none'
@@ -250,9 +250,9 @@ const ContactUs = () => {
                     className="contact-form-input"
                     style={{
                       width: '100%',
-                      padding: '12px 16px',
+                      padding: 'clamp(10px, 2.5vw, 12px) clamp(12px, 3vw, 16px)',
                       fontFamily: 'Manrope, sans-serif',
-                      fontSize: '14px',
+                      fontSize: 'clamp(14px, 3.5vw, 16px)',
                       border: '1px solid #E0E0E0',
                       borderRadius: '8px',
                       outline: 'none'
@@ -262,7 +262,7 @@ const ContactUs = () => {
               </div>
 
               {/* Row 2: Phone Number and Company Name */}
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-3 md:gap-4">
                 <div>
                   <input
                     type="tel"
@@ -274,9 +274,9 @@ const ContactUs = () => {
                     className="contact-form-input"
                     style={{
                       width: '100%',
-                      padding: '12px 16px',
+                      padding: 'clamp(10px, 2.5vw, 12px) clamp(12px, 3vw, 16px)',
                       fontFamily: 'Manrope, sans-serif',
-                      fontSize: '14px',
+                      fontSize: 'clamp(14px, 3.5vw, 16px)',
                       border: '1px solid #E0E0E0',
                       borderRadius: '8px',
                       outline: 'none'
@@ -294,9 +294,9 @@ const ContactUs = () => {
                     className="contact-form-input"
                     style={{
                       width: '100%',
-                      padding: '12px 16px',
+                      padding: 'clamp(10px, 2.5vw, 12px) clamp(12px, 3vw, 16px)',
                       fontFamily: 'Manrope, sans-serif',
-                      fontSize: '14px',
+                      fontSize: 'clamp(14px, 3.5vw, 16px)',
                       border: '1px solid #E0E0E0',
                       borderRadius: '8px',
                       outline: 'none'
@@ -317,9 +317,9 @@ const ContactUs = () => {
                   className="contact-form-input"
                   style={{
                     width: '100%',
-                    padding: '12px 16px',
+                    padding: 'clamp(10px, 2.5vw, 12px) clamp(12px, 3vw, 16px)',
                     fontFamily: 'Manrope, sans-serif',
-                    fontSize: '14px',
+                    fontSize: 'clamp(14px, 3.5vw, 16px)',
                     border: '1px solid #E0E0E0',
                     borderRadius: '8px',
                     outline: 'none'
@@ -335,17 +335,18 @@ const ContactUs = () => {
                   value={formData.message}
                   onChange={handleChange}
                   required
-                  rows="8"
+                  rows="6"
                   className="contact-form-textarea"
                   style={{
                     width: '100%',
-                    padding: '12px 16px',
+                    padding: 'clamp(10px, 2.5vw, 12px) clamp(12px, 3vw, 16px)',
                     fontFamily: 'Manrope, sans-serif',
-                    fontSize: '14px',
+                    fontSize: 'clamp(14px, 3.5vw, 16px)',
                     border: '1px solid #E0E0E0',
                     borderRadius: '8px',
                     outline: 'none',
-                    resize: 'vertical'
+                    resize: 'vertical',
+                    minHeight: 'clamp(100px, 20vw, 120px)'
                   }}
                 />
               </div>
@@ -357,9 +358,9 @@ const ContactUs = () => {
                   style={{
                     background: '#3E6EB4',
                     color: '#FFFFFF',
-                    padding: '16px 32px',
+                    padding: 'clamp(12px, 3vw, 16px) clamp(24px, 6vw, 32px)',
                     fontFamily: 'Manrope, sans-serif',
-                    fontSize: '16px',
+                    fontSize: 'clamp(14px, 3.5vw, 16px)',
                     fontWeight: 500,
                     border: 'none',
                     borderRadius: '50px',

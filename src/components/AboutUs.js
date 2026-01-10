@@ -3,11 +3,11 @@ import { motion } from 'framer-motion';
 
 const AboutUs = () => {
   return (
-    <section 
-      className="py-16 px-4 sm:px-6 lg:px-8 relative"
+    <section
+      className="py-8 md:py-16 px-4 sm:px-6 lg:px-8 relative"
       style={{
-        paddingTop: '80px',
-        paddingBottom: '80px',
+        paddingTop: 'clamp(40px, 10vw, 80px)',
+        paddingBottom: 'clamp(40px, 10vw, 80px)',
         overflow: 'hidden',
         position: 'relative'
       }}
@@ -38,14 +38,14 @@ const AboutUs = () => {
           transition={{ duration: 0.8, ease: "easeOut" }}
           style={{
             background: 'rgba(255, 255, 255, 0.5)',
-            borderRadius: '16px',
-            padding: '50px 35px',
+            borderRadius: 'clamp(12px, 3vw, 16px)',
+            padding: 'clamp(25px, 6vw, 50px) clamp(20px, 5vw, 35px)',
             boxShadow: '0 8px 30px rgba(0, 0, 0, 0.15)',
             border: '1px solid rgba(240, 240, 240, 0.5)',
-            marginBottom: '60px',
+            marginBottom: 'clamp(30px, 7.5vw, 60px)',
             textAlign: 'center',
             maxWidth: '525px',
-            margin: '0 auto 60px auto'
+            margin: '0 auto clamp(30px, 7.5vw, 60px) auto'
           }}
         >
           {/* Title */}
@@ -53,12 +53,12 @@ const AboutUs = () => {
             style={{
               fontFamily: 'Raleway, sans-serif',
               fontWeight: 600,
-              fontSize: '48px',
+              fontSize: 'clamp(32px, 8vw, 48px)',
               lineHeight: '100%',
               letterSpacing: '-1px',
               textAlign: 'center',
               color: '#141219',
-              marginBottom: '20px'
+              marginBottom: 'clamp(12px, 3vw, 20px)'
             }}
           >
             About Us
@@ -73,11 +73,11 @@ const AboutUs = () => {
               backgroundClip: 'text',
               fontFamily: 'Manrope, sans-serif',
               fontWeight: 400,
-              fontSize: '20px',
+              fontSize: 'clamp(16px, 4vw, 20px)',
               lineHeight: '140%',
               letterSpacing: '0px',
-              textAlign: 'left',
-              marginLeft: "10px"
+              textAlign: 'center',
+              marginLeft: "0"
             }}
           >
             Meet the Minds Shaping Document Automation.
@@ -90,66 +90,82 @@ const AboutUs = () => {
            whileInView={{ opacity: 1, x: 0 }}
            viewport={{ once: false, amount: 0.3 }}
            transition={{ duration: 0.8, ease: "easeOut" }}
+           className="flex flex-col md:flex-row items-start md:items-center"
            style={{
              background: '#FFFFFF',
-             borderRadius: '16px 100px 100px 16px',
-             padding: '25px 30px',
+             borderRadius: 'clamp(12px, 3vw, 16px) clamp(50px, 12.5vw, 100px) clamp(50px, 12.5vw, 100px) clamp(12px, 3vw, 16px)',
+             padding: 'clamp(20px, 5vw, 25px) clamp(20px, 5vw, 30px)',
              boxShadow: '0 4px 20px rgba(0, 0, 0, 0.08)',
              border: '1px solid #F0F0F0',
-             marginBottom: '40px',
-             display: 'flex',
-             alignItems: 'center',
-             gap: '30px',
+             marginBottom: 'clamp(20px, 5vw, 40px)',
+             gap: 'clamp(15px, 4vw, 30px)',
              maxWidth: '850px',
              marginRight: 'auto',
-             marginLeft: '-110px',
-             marginTop: '80px',
-
+             marginLeft: '0',
+             marginTop: 'clamp(20px, 5vw, 80px)',
            }}
          >
           {/* Description Text */}
           <p
+            className="text-center md:text-right"
             style={{
               fontFamily: 'Manrope, sans-serif',
               fontWeight: 400,
-              fontSize: '16px',
+              fontSize: 'clamp(14px, 3.5vw, 16px)',
               lineHeight: '150%',
               letterSpacing: '0px',
               color: '#696969',
               margin: '0',
               flex: 1,
-              textAlign: 'right'
+              order: 1
             }}
           >
             To redefine document management with cutting-edge technology that ensures accuracy, efficiency, and trust.
           </p>
 
-          {/* Vertical Orange Line */}
+          {/* Horizontal Orange Line - Mobile Only */}
           <div
+            className="block md:hidden"
             style={{
-              width: '4px',
-              height: '70px',
+              width: 'clamp(60px, 15vw, 80px)',
+              height: 'clamp(3px, 0.75vw, 4px)',
               background: '#CD6028',
               borderRadius: '2px',
-              flexShrink: 0
+              flexShrink: 0,
+              order: 2,
+              margin: '10px 0'
+            }}
+          />
+
+          {/* Vertical Orange Line - Desktop Only */}
+          <div
+            className="hidden md:block"
+            style={{
+              width: 'clamp(3px, 0.75vw, 4px)',
+              height: 'clamp(50px, 12.5vw, 70px)',
+              background: '#CD6028',
+              borderRadius: '2px',
+              flexShrink: 0,
+              order: 2
             }}
           />
 
            {/* Our Vision Text */}
            <h3
+             className="text-center md:text-left"
              style={{
                fontFamily: 'Raleway, sans-serif',
                fontWeight: 700,
-               fontSize: '24px',
-               lineHeight: '38px',
+               fontSize: 'clamp(18px, 4.5vw, 24px)',
+               lineHeight: 'clamp(28px, 7vw, 38px)',
                letterSpacing: '0px',
                color: '#141219',
                margin: '0',
                whiteSpace: 'nowrap',
-               textAlign: 'left'
+               order: 3
              }}
            >
-             Our<br />Vision
+             Our<br className="hidden md:block" />Vision
            </h3>
 
           {/* Vision Icon */}
@@ -157,10 +173,11 @@ const AboutUs = () => {
             src="/assets/vision.png"
             alt="Vision"
             style={{
-              width: '100px',
-              height: '100px',
+              width: 'clamp(60px, 15vw, 100px)',
+              height: 'clamp(60px, 15vw, 100px)',
               objectFit: 'contain',
-              flexShrink: 0
+              flexShrink: 0,
+              order: 4
             }}
           />
         </motion.div>
@@ -171,66 +188,82 @@ const AboutUs = () => {
            whileInView={{ opacity: 1, x: 0 }}
            viewport={{ once: false, amount: 0.3 }}
            transition={{ duration: 0.8, ease: "easeOut" }}
+           className="flex flex-col md:flex-row md:flex-row-reverse items-start md:items-center"
            style={{
              background: '#FFFFFF',
-             borderRadius: '100px 16px 16px 100px',
-             padding: '25px 30px',
+             borderRadius: 'clamp(50px, 12.5vw, 100px) clamp(12px, 3vw, 16px) clamp(12px, 3vw, 16px) clamp(50px, 12.5vw, 100px)',
+             padding: 'clamp(20px, 5vw, 25px) clamp(20px, 5vw, 30px)',
              boxShadow: '0 4px 20px rgba(0, 0, 0, 0.08)',
              border: '1px solid #F0F0F0',
-             display: 'flex',
-             alignItems: 'center',
-             gap: '30px',
-             flexDirection: 'row-reverse',
+             gap: 'clamp(15px, 4vw, 30px)',
              maxWidth: '850px',
              marginLeft: 'auto',
-             marginRight: "-110px",
-             marginTop: '80px',
-             marginBottom: '40px'
+             marginRight: '0',
+             marginTop: 'clamp(20px, 5vw, 80px)',
+             marginBottom: 'clamp(20px, 5vw, 40px)'
            }}
          >
           {/* Description Text */}
           <p
+            className="text-center md:text-left"
             style={{
               fontFamily: 'Manrope, sans-serif',
               fontWeight: 400,
-              fontSize: '16px',
+              fontSize: 'clamp(14px, 3.5vw, 16px)',
               lineHeight: '150%',
               letterSpacing: '0px',
               color: '#696969',
               margin: '0',
               flex: 1,
-              textAlign: 'left'
+              order: 1
             }}
           >
             To redefine document management with cutting-edge technology that ensures accuracy, efficiency, and trust.
           </p>
 
-          {/* Vertical Orange Line */}
+          {/* Horizontal Orange Line - Mobile Only */}
           <div
+            className="block md:hidden"
             style={{
-              width: '4px',
-              height: '70px',
+              width: 'clamp(60px, 15vw, 80px)',
+              height: 'clamp(3px, 0.75vw, 4px)',
               background: '#CD6028',
               borderRadius: '2px',
-              flexShrink: 0
+              flexShrink: 0,
+              order: 2,
+              margin: '10px 0'
+            }}
+          />
+
+          {/* Vertical Orange Line - Desktop Only */}
+          <div
+            className="hidden md:block"
+            style={{
+              width: 'clamp(3px, 0.75vw, 4px)',
+              height: 'clamp(50px, 12.5vw, 70px)',
+              background: '#CD6028',
+              borderRadius: '2px',
+              flexShrink: 0,
+              order: 2
             }}
           />
 
            {/* Our Mission Text */}
            <h3
+             className="text-center md:text-right"
              style={{
                fontFamily: 'Raleway, sans-serif',
                fontWeight: 700,
-               fontSize: '24px',
-               lineHeight: '38px',
+               fontSize: 'clamp(18px, 4.5vw, 24px)',
+               lineHeight: 'clamp(28px, 7vw, 38px)',
                letterSpacing: '0px',
                color: '#141219',
                margin: '0',
                whiteSpace: 'nowrap',
-               textAlign: 'right'
+               order: 3
              }}
            >
-             Our<br />Mission
+             Our<br className="hidden md:block" />Mission
            </h3>
 
           {/* Mission Icon */}
@@ -238,10 +271,11 @@ const AboutUs = () => {
             src="/assets/mission.png"
             alt="Mission"
             style={{
-              width: '100px',
-              height: '100px',
+              width: 'clamp(60px, 15vw, 100px)',
+              height: 'clamp(60px, 15vw, 100px)',
               objectFit: 'contain',
-              flexShrink: 0
+              flexShrink: 0,
+              order: 4
             }}
           />
         </motion.div>

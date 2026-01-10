@@ -52,10 +52,10 @@ const BlogSection = () => {
   const displayedPosts = blogPosts.slice(startIndex, startIndex + cardsPerPage);
 
   return (
-    <section className="py-16 px-4 sm:px-6 lg:px-8 bg-white relative overflow-visible">
+    <section className="py-8 md:py-16 px-4 sm:px-6 lg:px-8 bg-white relative overflow-visible">
       {/* Design patch 1 - Top left */}
       <motion.div
-        className="absolute pointer-events-none"
+        className="absolute pointer-events-none hidden md:block"
         initial={{ x: -200, opacity: 0 }}
         whileInView={{ x: 0, opacity: 1 }}
         viewport={{ once: false, amount: 0.1 }}
@@ -77,7 +77,7 @@ const BlogSection = () => {
 
       {/* Design patch 2 - Top right behind third card */}
       <motion.div
-        className="absolute pointer-events-none"
+        className="absolute pointer-events-none hidden lg:block"
         initial={{ x: 300, opacity: 0 }}
         whileInView={{ x: 0, opacity: 1 }}
         viewport={{ once: false, amount: 0.1 }}
@@ -98,8 +98,8 @@ const BlogSection = () => {
       </motion.div>
       <div className="max-w-7xl mx-auto relative z-10">
         {/* Centered "Blogs" heading */}
-        <motion.div 
-          className="text-center mb-6"
+        <motion.div
+          className="text-center mb-4 md:mb-6"
           initial={{ y: -50, opacity: 0 }}
           whileInView={{ y: 0, opacity: 1 }}
           viewport={{ once: false, amount: 0.3 }}
@@ -110,7 +110,7 @@ const BlogSection = () => {
               fontFamily: 'Raleway, sans-serif',
               fontWeight: 600,
               fontStyle: 'normal',
-              fontSize: '48px',
+              fontSize: 'clamp(32px, 8vw, 48px)',
               lineHeight: '100%',
               letterSpacing: '-1px',
               textAlign: 'center',
@@ -122,8 +122,8 @@ const BlogSection = () => {
         </motion.div>
 
         {/* Subtitle with gradient text */}
-        <motion.div 
-          className="text-center mb-12"
+        <motion.div
+          className="text-center mb-8 md:mb-12"
           initial={{ y: -50, opacity: 0 }}
           whileInView={{ y: 0, opacity: 1 }}
           viewport={{ once: false, amount: 0.3 }}
@@ -137,7 +137,7 @@ const BlogSection = () => {
               backgroundClip: 'text',
               fontFamily: 'Raleway, sans-serif',
               fontWeight: 500,
-              fontSize: '18px',
+              fontSize: 'clamp(16px, 4vw, 18px)',
               lineHeight: '1.6',
               maxWidth: '800px',
               margin: '0 auto'
@@ -148,7 +148,7 @@ const BlogSection = () => {
         </motion.div>
 
         {/* Blog Cards Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-16 mt-12">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 md:gap-12 lg:gap-16 mt-8 md:mt-12">
           {displayedPosts.map((post, index) => (
             <div
               key={post.id}
@@ -208,7 +208,7 @@ const BlogSection = () => {
                   overflow: 'visible'
                 }}
               >
-              <div className="p-6">
+              <div className="p-4 md:p-6">
                 {/* Card Title */}
                 <h3
                   className="mb-2"
@@ -216,7 +216,7 @@ const BlogSection = () => {
                     fontFamily: 'Raleway, sans-serif',
                     fontWeight: 700,
                     fontStyle: 'normal',
-                    fontSize: '16px',
+                    fontSize: 'clamp(16px, 4vw, 18px)',
                     lineHeight: '100%',
                     letterSpacing: '0px',
                     verticalAlign: 'middle',
@@ -230,11 +230,11 @@ const BlogSection = () => {
 
                 {/* Date */}
                 <p
-                  className="mb-4"
+                  className="mb-3 md:mb-4"
                   style={{
                     fontFamily: 'Raleway, sans-serif',
                     fontWeight: 500,
-                    fontSize: '14px',
+                    fontSize: 'clamp(14px, 3vw, 16px)',
                     color: '#719AD0',
                     textAlign: 'left'
                   }}
@@ -247,7 +247,7 @@ const BlogSection = () => {
                   style={{
                     fontFamily: 'Raleway, sans-serif',
                     fontWeight: 400,
-                    fontSize: '16px',
+                    fontSize: 'clamp(14px, 3.5vw, 16px)',
                     lineHeight: '1.6',
                     color: '#696969',
                     textAlign: 'left'
@@ -263,8 +263,8 @@ const BlogSection = () => {
         </div>
 
         {/* Arrow Buttons Below Cards */}
-        <motion.div 
-          className="flex justify-center gap-4 mt-16"
+        <motion.div
+          className="flex justify-center gap-4 mt-8 md:mt-16"
           initial={{ y: 50, opacity: 0 }}
           whileInView={{ y: 0, opacity: 1 }}
           viewport={{ once: false, amount: 0.3 }}
@@ -276,8 +276,8 @@ const BlogSection = () => {
             className="hover:opacity-90 transition-opacity duration-200"
             style={{
               background: '#3E6EB4',
-              width: '44px',
-              height: '44px',
+              width: 'clamp(40px, 8vw, 44px)',
+              height: 'clamp(40px, 8vw, 44px)',
               borderRadius: '12px',
               border: 'none',
               display: 'flex',
@@ -287,8 +287,8 @@ const BlogSection = () => {
             }}
           >
             <svg
-              width="20"
-              height="20"
+              width="clamp(18px, 4vw, 20px)"
+              height="clamp(18px, 4vw, 20px)"
               viewBox="0 0 24 24"
               fill="none"
               xmlns="http://www.w3.org/2000/svg"
@@ -306,8 +306,8 @@ const BlogSection = () => {
             className="hover:opacity-90 transition-opacity duration-200"
             style={{
               background: '#3E6EB4',
-              width: '44px',
-              height: '44px',
+              width: 'clamp(40px, 8vw, 44px)',
+              height: 'clamp(40px, 8vw, 44px)',
               borderRadius: '12px',
               border: 'none',
               display: 'flex',
@@ -317,8 +317,8 @@ const BlogSection = () => {
             }}
           >
             <svg
-              width="20"
-              height="20"
+              width="clamp(18px, 4vw, 20px)"
+              height="clamp(18px, 4vw, 20px)"
               viewBox="0 0 24 24"
               fill="none"
               xmlns="http://www.w3.org/2000/svg"

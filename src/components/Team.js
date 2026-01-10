@@ -36,10 +36,10 @@ const Team = () => {
 
   return (
     <section
-      className="py-16 px-4 sm:px-6 lg:px-8 relative"
+      className="py-8 md:py-16 px-4 sm:px-6 lg:px-8 relative"
       style={{
-        paddingTop: '80px',
-        paddingBottom: '80px',
+        paddingTop: 'clamp(40px, 10vw, 80px)',
+        paddingBottom: 'clamp(40px, 10vw, 80px)',
         overflow: 'hidden',
         position: 'relative',
         background: '#FFFFFF'
@@ -47,6 +47,7 @@ const Team = () => {
     >
       {/* Left Side Background Image - 50% */}
       <motion.div
+        className="hidden md:block"
         initial={{ opacity: 0, x: -200 }}
         whileInView={{ opacity: 1, x: 0 }}
         viewport={{ once: false, amount: 0.3 }}
@@ -67,7 +68,7 @@ const Team = () => {
 
       {/* Design patch - Middle right */}
       <motion.div
-        className="absolute pointer-events-none"
+        className="absolute pointer-events-none hidden lg:block"
         initial={{ opacity: 0, x: 200 }}
         whileInView={{ opacity: 1, x: 0 }}
         viewport={{ once: false, amount: 0.3 }}
@@ -98,12 +99,12 @@ const Team = () => {
           style={{
             fontFamily: 'Raleway, sans-serif',
             fontWeight: 600,
-            fontSize: '48px',
+            fontSize: 'clamp(32px, 8vw, 48px)',
             lineHeight: '100%',
             letterSpacing: '-1px',
             textAlign: 'center',
             color: '#141219',
-            marginBottom: '24px'
+            marginBottom: 'clamp(16px, 4vw, 24px)'
           }}
         >
           Meet our team
@@ -122,33 +123,34 @@ const Team = () => {
             backgroundClip: 'text',
             fontFamily: 'Manrope, sans-serif',
             fontWeight: 400,
-            fontSize: '24px',
-            lineHeight: '100%',
+            fontSize: 'clamp(16px, 4vw, 24px)',
+            lineHeight: '120%',
             letterSpacing: '0px',
             textAlign: 'center',
-            marginBottom: '60px',
+            marginBottom: 'clamp(30px, 7.5vw, 60px)',
             maxWidth: '900px',
-            margin: '0 auto 60px auto'
+            margin: '0 auto',
+            padding: '0 20px'
           }}
         >
           Meet our passionate and talented team, committed to delivering exceptional results, driving innovation, and transforming your vision into reality.
         </motion.p>
 
         {/* Carousel/Accordion Section */}
-        <motion.div 
+        <motion.div
           initial={{ opacity: 0, y: 120 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: false, amount: 0.3 }}
           transition={{ duration: 1.0, delay: 0.4, ease: "easeOut" }}
-          style={{ marginTop: '60px' }}
+          style={{ marginTop: 'clamp(30px, 7.5vw, 60px)' }}
         >
           {/* Arrows Above Images */}
           <div
             style={{
               display: 'flex',
               justifyContent: 'center',
-              gap: '20px',
-              marginBottom: '30px'
+              gap: 'clamp(15px, 4vw, 20px)',
+              marginBottom: 'clamp(20px, 5vw, 30px)'
             }}
           >
             {/* Left Arrow */}
@@ -157,8 +159,8 @@ const Team = () => {
               className="hover:opacity-90 transition-opacity duration-200"
               style={{
                 background: '#3E6EB4',
-                width: '44px',
-                height: '44px',
+                width: 'clamp(40px, 8vw, 44px)',
+                height: 'clamp(40px, 8vw, 44px)',
                 borderRadius: '12px',
                 border: 'none',
                 display: 'flex',
@@ -168,8 +170,8 @@ const Team = () => {
               }}
             >
               <svg
-                width="20"
-                height="20"
+                width="clamp(18px, 4vw, 20px)"
+                height="clamp(18px, 4vw, 20px)"
                 viewBox="0 0 24 24"
                 fill="none"
                 xmlns="http://www.w3.org/2000/svg"
@@ -187,8 +189,8 @@ const Team = () => {
               className="hover:opacity-90 transition-opacity duration-200"
               style={{
                 background: '#3E6EB4',
-                width: '44px',
-                height: '44px',
+                width: 'clamp(40px, 8vw, 44px)',
+                height: 'clamp(40px, 8vw, 44px)',
                 borderRadius: '12px',
                 border: 'none',
                 display: 'flex',
@@ -198,8 +200,8 @@ const Team = () => {
               }}
             >
               <svg
-                width="20"
-                height="20"
+                width="clamp(18px, 4vw, 20px)"
+                height="clamp(18px, 4vw, 20px)"
                 viewBox="0 0 24 24"
                 fill="none"
                 xmlns="http://www.w3.org/2000/svg"
@@ -217,9 +219,10 @@ const Team = () => {
             style={{
               display: 'flex',
               alignItems: 'center',
-              gap: '30px',
+              gap: 'clamp(15px, 4vw, 30px)',
               justifyContent: 'center',
-              marginBottom: '40px'
+              marginBottom: 'clamp(20px, 5vw, 40px)',
+              padding: '0 10px'
             }}
           >
               {/* Left Member */}
@@ -234,15 +237,15 @@ const Team = () => {
                 >
                   <div
                     style={{
-                      width: '180px',
-                      height: '180px',
+                      width: 'clamp(120px, 25vw, 180px)',
+                      height: 'clamp(120px, 25vw, 180px)',
                       borderRadius: '50%',
                       backgroundImage: `url(${teamMembers[(activeIndex - 1 + teamMembers.length) % teamMembers.length].image})`,
                       backgroundSize: 'cover',
                       backgroundPosition: 'center',
                       transition: 'all 0.3s ease',
                       boxShadow: '0 4px 15px rgba(0, 0, 0, 0.1)',
-                      border: '3px solid #FFFFFF'
+                      border: 'clamp(2px, 0.5vw, 3px) solid #FFFFFF'
                     }}
                   />
                 </div>
@@ -258,15 +261,15 @@ const Team = () => {
               >
                 <div
                   style={{
-                    width: '250px',
-                    height: '250px',
+                    width: 'clamp(160px, 35vw, 250px)',
+                    height: 'clamp(160px, 35vw, 250px)',
                     borderRadius: '50%',
                     backgroundImage: `url(${teamMembers[activeIndex].image})`,
                     backgroundSize: 'cover',
                     backgroundPosition: 'center',
                     transition: 'all 0.3s ease',
                     boxShadow: '0 10px 40px rgba(62, 110, 180, 0.3)',
-                    border: '0.95px solid #CD6028'
+                    border: 'clamp(1px, 0.25vw, 1px) solid #CD6028'
                   }}
                 />
               </div>
@@ -283,15 +286,15 @@ const Team = () => {
                 >
                   <div
                     style={{
-                      width: '180px',
-                      height: '180px',
+                      width: 'clamp(120px, 25vw, 180px)',
+                      height: 'clamp(120px, 25vw, 180px)',
                       borderRadius: '50%',
                       backgroundImage: `url(${teamMembers[(activeIndex + 1) % teamMembers.length].image})`,
                       backgroundSize: 'cover',
                       backgroundPosition: 'center',
                       transition: 'all 0.3s ease',
                       boxShadow: '0 4px 15px rgba(0, 0, 0, 0.1)',
-                      border: '3px solid #FFFFFF'
+                      border: 'clamp(2px, 0.5vw, 3px) solid #FFFFFF'
                     }}
                   />
                 </div>
@@ -303,30 +306,31 @@ const Team = () => {
             style={{
               display: 'flex',
               justifyContent: 'center',
-              position: 'relative'
+              position: 'relative',
+              padding: '0 20px'
             }}
           >
             {/* Arrow/Triangle pointing up */}
             <div
               style={{
                 position: 'absolute',
-                top: '-20px',
+                top: 'clamp(-15px, -4vw, -20px)',
                 left: '50%',
                 transform: 'translateX(-50%)',
                 width: 0,
                 height: 0,
-                borderLeft: '20px solid transparent',
-                borderRight: '20px solid transparent',
-                borderBottom: '20px solid #3E6EB4',
+                borderLeft: 'clamp(15px, 4vw, 20px) solid transparent',
+                borderRight: 'clamp(15px, 4vw, 20px) solid transparent',
+                borderBottom: 'clamp(15px, 4vw, 20px) solid #3E6EB4',
                 zIndex: 2
               }}
             />
-            
+
             <div
               style={{
                 background: 'linear-gradient(135deg, #3E6EB4 0%, #2D5A8F 100%)',
-                borderRadius: '20px',
-                padding: '40px 60px',
+                borderRadius: 'clamp(15px, 4vw, 20px)',
+                padding: 'clamp(25px, 6vw, 40px) clamp(30px, 7.5vw, 60px)',
                 maxWidth: '700px',
                 width: '100%',
                 boxShadow: '0 10px 40px rgba(0, 0, 0, 0.15)',
@@ -340,11 +344,11 @@ const Team = () => {
                 style={{
                   fontFamily: 'Raleway, sans-serif',
                   fontWeight: 700,
-                  fontSize: '36px',
+                  fontSize: 'clamp(24px, 6vw, 36px)',
                   lineHeight: '100%',
                   letterSpacing: '0px',
                   color: '#FFFFFF',
-                  marginBottom: '16px'
+                  marginBottom: 'clamp(10px, 3vw, 16px)'
                 }}
               >
                 {teamMembers[activeIndex].name}
@@ -355,12 +359,12 @@ const Team = () => {
                 style={{
                   fontFamily: 'Manrope, sans-serif',
                   fontWeight: 400,
-                  fontSize: '24px',
+                  fontSize: 'clamp(16px, 4vw, 24px)',
                   lineHeight: '100%',
                   letterSpacing: '0px',
                   textAlign: 'center',
                   color: '#CD6028',
-                  marginBottom: '24px'
+                  marginBottom: 'clamp(16px, 4vw, 24px)'
                 }}
               >
                 {teamMembers[activeIndex].title}
@@ -371,7 +375,7 @@ const Team = () => {
                 style={{
                   fontFamily: 'Manrope, sans-serif',
                   fontWeight: 400,
-                  fontSize: '16px',
+                  fontSize: 'clamp(14px, 3.5vw, 16px)',
                   lineHeight: '150%',
                   letterSpacing: '0px',
                   textAlign: 'center',

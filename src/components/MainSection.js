@@ -53,12 +53,12 @@ const MainSection = ({ splashComplete = false }) => {
           }
         }
       `}</style>
-      <section className="py-16 px-4 sm:px-6 lg:px-8 bg-transparent relative overflow-x-hidden">
+      <section className="py-8 md:py-16 px-4 sm:px-6 lg:px-8 bg-transparent relative overflow-x-hidden">
         <div className="max-w-7xl mx-auto relative z-10">
-          <div className="flex flex-col lg:flex-row gap-12 items-center">
+          <div className="flex flex-col lg:flex-row gap-8 md:gap-12 items-center">
             {/* Left Side - 42% */}
             <div 
-            className="flex flex-col space-y-6 mt-12 w-full lg:w-[42%]"
+            className="flex flex-col space-y-4 md:space-y-6 mt-4 md:mt-12 w-full lg:w-[42%]"
             style={{
               transform: showContent ? 'translateX(0)' : 'translateX(-100%)',
               opacity: showContent ? 1 : 0,
@@ -72,8 +72,8 @@ const MainSection = ({ splashComplete = false }) => {
               style={{ 
                 fontFamily: 'Raleway, sans-serif',
                 fontWeight: 700,
-                fontSize: '48px',
-                lineHeight: '68.25px',
+                fontSize: 'clamp(28px, 6vw, 48px)',
+                lineHeight: 'clamp(36px, 7vw, 68.25px)',
                 letterSpacing: '0px',
                 verticalAlign: 'middle'
               }}
@@ -99,8 +99,8 @@ const MainSection = ({ splashComplete = false }) => {
               style={{ 
                 fontFamily: 'Manrope, sans-serif',
                 fontWeight: 500,
-                fontSize: '20px',
-                lineHeight: '31.2px',
+                fontSize: 'clamp(16px, 3.5vw, 20px)',
+                lineHeight: 'clamp(24px, 4.5vw, 31.2px)',
                 letterSpacing: '0px',
                 verticalAlign: 'middle'
               }}
@@ -109,23 +109,23 @@ const MainSection = ({ splashComplete = false }) => {
             </p>
 
             {/* Buttons */}
-            <div className="flex gap-4 pt-4 w-full">
+            <div className="flex flex-col sm:flex-row gap-3 md:gap-4 pt-2 md:pt-4 w-full">
               <button 
-                className="bg-[#3E6EB4] hover:bg-blue-700 text-white font-medium text-base py-3 px-8 rounded-3xl transition-colors duration-200"
+                className="bg-[#3E6EB4] hover:bg-blue-700 text-white font-medium text-sm md:text-base py-2.5 md:py-3 px-6 md:px-8 rounded-3xl transition-colors duration-200"
                 style={{ 
                   fontFamily: 'Manrope, sans-serif',
-                  width: '50%',
-                  minWidth: '180px'
+                  width: '100%',
+                  minWidth: 'auto'
                 }}
               >
                 Get a Demo
               </button>
               <button 
-                className="bg-[#3E6EB4] hover:bg-blue-700 text-white font-medium text-base py-3 px-8 rounded-3xl transition-colors duration-200"
+                className="bg-[#3E6EB4] hover:bg-blue-700 text-white font-medium text-sm md:text-base py-2.5 md:py-3 px-6 md:px-8 rounded-3xl transition-colors duration-200"
                 style={{ 
                   fontFamily: 'Manrope, sans-serif',
-                  width: '50%',
-                  minWidth: '180px'
+                  width: '100%',
+                  minWidth: 'auto'
                 }}
               >
                 Explore Solutions
@@ -143,7 +143,7 @@ const MainSection = ({ splashComplete = false }) => {
               willChange: 'transform, opacity'
             }}
           >
-            <div className="relative w-full max-w-lg overflow-hidden" style={{ minHeight: '400px' }}>
+            <div className="relative w-full max-w-sm md:max-w-lg overflow-hidden" style={{ minHeight: 'clamp(250px, 50vw, 400px)' }}>
               {heroImages.map((imageSrc, index) => {
                 const isActive = currentImageIndex === index;
                 
